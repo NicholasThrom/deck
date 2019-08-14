@@ -117,14 +117,23 @@ function attack(message: Message) {
         health -= Math.floor(randomIn(10, 400));
         hits++;
         if (health > 0) {
-            const responses = [
-                `${health} hp remaining!`,
-                `${health} hp remaining!`,
-                `${health} hp remaining!`,
-                `${health} hp remaining! ${hits} hit ${hits > 1 ? "s" : ""} so far!`,
-                `oh shoot I'm down to ${health} hp.`,
-            ];
-            message.reply(randomElement(responses));
+            if (health < 10) {
+                message.reply(`${health} hp remaining! big oof.`);
+            } else if (health < 50) {
+                message.reply(`${health} hp remaining! oof.`);
+            } else {
+                const responses = [
+                    `${health} hp remaining!`,
+                    `${health} hp remaining!`,
+                    `${health} hp remaining!`,
+                    `${health} hp remaining!`,
+                    `${health} hp remaining! ${hits} hit${hits > 1 ? "s" : ""} so far!`,
+                    `${health} hp remaining! ${hits} hit${hits > 1 ? "s" : ""} so far!`,
+                    `oh shoot I'm down to ${health} hp.`,
+                    `Oh deck! I'm down to ${health} hp.`,
+                ];
+                message.reply(randomElement(responses));
+            }
         } else {
             const responses = [
                 `decKO! in ${hits} hits!`,
