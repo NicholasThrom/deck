@@ -1,0 +1,22 @@
+{
+  "name": "deck",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@types/mz": "0.0.32",
+    "discord.js": "^11.5.1",
+    "mz": "^2.7.0",
+    "tslint": "^5.18.0",
+    "typesafe-json": "^0.2.0",
+    "typescript": "^3.5.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "tsc",
+    "start": "node ./dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "UNLICENSED"
+}
