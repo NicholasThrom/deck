@@ -4,7 +4,7 @@ import { chance, randomElement } from "../utils/random";
 export async function play(message: Message) {
     const { content } = message;
 
-    const match = content.match(/!play (.*)/i);
+    const match = content.match(/!play(?:top)? (.*)/i);
     if (match) {
         const name = match[1];
         message.reply(`${name} has been put on the playing deck!`);
