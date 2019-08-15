@@ -5,6 +5,8 @@ import { attack } from "./attack";
 import { deckDealer } from "./deck-dealer";
 import { decker } from "./decker";
 import { play } from "./play";
+import { questionTester } from "./question-tester";
+import { handleQuestionResponse } from "./questions/questions";
 import { thanker } from "./thanker";
 
 export async function handleMessage(client: Client, message: Message) {
@@ -15,10 +17,17 @@ export async function handleMessage(client: Client, message: Message) {
     await delay(400);
 
     await sequence([
+        // Listeners
         deckDealer,
+
+        // Question handling
+        handleQuestionResponse,
+
+        // Regular handlers
         play,
         thanker,
         decker,
         attack,
+        questionTester,
     ])(message);
 }
