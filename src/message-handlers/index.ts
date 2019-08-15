@@ -8,6 +8,7 @@ import { play } from "./play";
 import { questionTester } from "./question-tester";
 import { handleQuestionResponse } from "./questions/questions";
 import { thanker } from "./thanker";
+import { quietGame } from "./quiet-game";
 
 export async function handleMessage(client: Client, message: Message) {
     if (message.author.equals(client.user)) {
@@ -28,6 +29,7 @@ export async function handleMessage(client: Client, message: Message) {
         thanker,
         decker,
         attack,
+        quietGame,
         questionTester,
     ])(message);
 }
