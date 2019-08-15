@@ -1,14 +1,14 @@
 import { Client, Message } from "discord.js";
 import { delay } from "../utils/async";
 import { sequence } from "../utils/sequencer";
-import { attack } from "./attack";
-import { deckDealer } from "./deck-dealer";
-import { decker } from "./decker";
-import { play } from "./play";
-import { questionTester } from "./question-tester";
-import { handleQuestionResponse } from "./questions/questions";
-import { quietGame } from "./quiet-game";
-import { thanker } from "./thanker";
+import { handleQuestionResponse } from "./questions";
+import { attack } from "./regular-interactions/attack";
+import { deckDealer } from "./regular-interactions/deck-dealer";
+import { decker } from "./regular-interactions/decker";
+import { play } from "./regular-interactions/play";
+import { questionTester } from "./regular-interactions/question-tester";
+import { quietGame } from "./regular-interactions/quiet-game";
+import { thanker } from "./regular-interactions/thanker";
 
 export async function handleMessage(client: Client, message: Message) {
     if (message.author.equals(client.user)) { return; }

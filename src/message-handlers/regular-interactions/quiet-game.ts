@@ -1,8 +1,8 @@
 import { Message, User } from "discord.js";
-import { delay } from "../utils/async";
-import { randomElement } from "../utils/random";
-import { questionUntilExpired } from "./questions/question-factories";
-import { addQuestion } from "./questions/questions";
+import { delay } from "../../utils/async";
+import { randomElement } from "../../utils/random";
+import { addQuestion } from "../questions";
+import { questionUntilExpired } from "../questions/question-factories";
 
 const duration = 30000;
 const durationString = "30 seconds";

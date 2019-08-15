@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import { randomElement, randomIn } from "../utils/random";
+import { randomElement, randomIn } from "../../utils/random";
 
 let health = 1000;
 let hits = 0;

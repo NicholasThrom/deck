@@ -1,6 +1,6 @@
 import { Message } from "discord.js";
-import { delay } from "../utils/async";
-import { randomElement, randomIn } from "../utils/random";
+import { delay } from "../../utils/async";
+import { randomElement, randomIn } from "../../utils/random";
 
 export function deckDealer(message: Message) {
     delay(randomIn(10000, 10000000)).then(() => {

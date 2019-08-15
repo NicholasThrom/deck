@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import { chance, randomElement } from "../utils/random";
+import { chance, randomElement } from "../../utils/random";
 
 export function play(message: Message) {
     const { content } = message;

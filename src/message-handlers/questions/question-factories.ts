@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import { Question } from "./questions";
+import { Question } from ".";
 
 /**
  * Returns a question that never expires.

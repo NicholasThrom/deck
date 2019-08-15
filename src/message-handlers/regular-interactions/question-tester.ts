@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
-import { randomElement } from "../utils/random";
-import { questionUntilAnswered } from "./questions/question-factories";
-import { addQuestion } from "./questions/questions";
+import { randomElement } from "../../utils/random";
+import { addQuestion } from "../questions";
+import { questionUntilAnswered } from "../questions/question-factories";
 
 const items = [
     "deck",
