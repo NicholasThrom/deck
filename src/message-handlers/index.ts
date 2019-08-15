@@ -7,17 +7,16 @@ import { decker } from "./decker";
 import { play } from "./play";
 import { questionTester } from "./question-tester";
 import { handleQuestionResponse } from "./questions/questions";
-import { thanker } from "./thanker";
 import { quietGame } from "./quiet-game";
+import { thanker } from "./thanker";
 
 export async function handleMessage(client: Client, message: Message) {
-    if (message.author.equals(client.user)) {
-        return;
-    }
+    if (message.author.equals(client.user)) { return; }
 
     await delay(400);
 
     await sequence([
+
         // Listeners
         deckDealer,
 
@@ -31,5 +30,6 @@ export async function handleMessage(client: Client, message: Message) {
         attack,
         quietGame,
         questionTester,
+
     ])(message);
 }
