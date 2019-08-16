@@ -354,6 +354,21 @@ export function generateEnemy() {
             ],
             maxHealth: randomIn(400, 500),
         },
+        {
+            name: "Oppressed Gamer",
+            criesOfDespair: [
+                "\\*sniff\\* Achsually, maining Peach in SmashBros is...",
+                "Where's the mountain dew?",
+                "GET OUT OF MY ROOM I'M PLAYING MINECRAFT!",
+                "What's Mario's in-seam",
+                "\\*Dorito dust covered fingers wiggling\\* Screw you, man. Your mum gay",
+            ],
+            chanceOfCrying: 0.8,
+            deathMessages: [
+                "HACK! YOU HACKED!",
+            ],
+            maxHealth: randomIn(100, 300),
+        },
     ];
 
     const enemy = randomElement(enemies);
