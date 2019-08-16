@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import { randomElement } from "../../utils/random";
+import { randomElement } from "../../../utils/random";
 
 const responses = [
     "no prob!",
