@@ -6,7 +6,7 @@ import { deckDealer } from "./regular-interactions/decorative/deck-dealer";
 import { decker } from "./regular-interactions/decorative/decker";
 import { play } from "./regular-interactions/decorative/play";
 import { thanker } from "./regular-interactions/decorative/thanker";
-import { attack } from "./regular-interactions/minigames/attack";
+import { attack } from "./regular-interactions/minigames/battle/attack";
 import { quietGame } from "./regular-interactions/minigames/quiet-game";
 import { questionTester } from "./regular-interactions/tests/question-tester";
 

@@ -1,7 +1,7 @@
 /**
  * A map that returns default values for nonexistent keys.
  */
-class DefaultingMap<Key, Value> {
+export class DefaultingMap<Key, Value> {
 
     /**
      * Initializes this map with the specified default value.
