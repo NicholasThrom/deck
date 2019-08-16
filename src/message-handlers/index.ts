@@ -6,7 +6,7 @@ import { deckDealer } from "./regular-interactions/decorative/deck-dealer";
 import { decker } from "./regular-interactions/decorative/decker";
 import { play } from "./regular-interactions/decorative/play";
 import { thanker } from "./regular-interactions/decorative/thanker";
-import { attack } from "./regular-interactions/minigames/battle/fight";
+import { fight } from "./regular-interactions/minigames/battle/fight";
 import { quietGame } from "./regular-interactions/minigames/quiet-game";
 import { questionTester } from "./regular-interactions/tests/question-tester";
 
@@ -27,7 +27,7 @@ export async function handleMessage(client: Client, message: Message) {
         play,
         thanker,
         decker,
-        attack,
+        fight,
         quietGame,
         questionTester,
 
