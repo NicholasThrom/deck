@@ -1,15 +1,8 @@
 import { Message } from "discord.js";
-import { DefaultingMap } from "../../../../../utils/defaulting-dictionary";
 import { randomIn } from "../../../../../utils/random";
-import { sequence } from "../../../../../utils/sequencer";
-import { Enemy } from "../enemies/enemy";
-import { generateEnemy } from "../enemies/enemy-generator";
-import { User } from "../users/user";
+import { enemies, users } from "../state";
 
-const enemies: DefaultingMap<string, Enemy> = new DefaultingMap((_) => generateEnemy());
-const users: DefaultingMap<string, User> = new DefaultingMap((id) => new User({ id }));
-
-function attack(message: Message) {
+export function attack(message: Message) {
     if (!message.content.match(/attack/i)) { return; }
 
     const user = users.get(message.author.id);
@@ -52,35 +45,3 @@ function attack(message: Message) {
 
     return true;
 }
-
-function run(message: Message) {
-    if (!message.content.match(/run/i)) { return; }
-
-    const user = users.get(message.author.id);
-    const enemy = enemies.get(message.channel.id);
-
-    message.reply("You ran away!");
-    enemies.delete(message.channel.id);
-    if (enemy.shouldWinMessage()) {
-        message.channel.send(enemy.winMessage());
-    }
-    user.revive();
-
-    return true;
-}
-
-function stats(message: Message) {
-    if (!message.content.match(/statu?s|^inv$|inventory/i)) { return; }
-
-    const user = users.get(message.author.id);
-
-    message.channel.send(user.status());
-
-    return true;
-}
-
-export const fight = sequence([
-    attack,
-    run,
-    stats,
-]);
