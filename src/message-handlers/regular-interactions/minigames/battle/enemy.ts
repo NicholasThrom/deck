@@ -1,4 +1,6 @@
+import * as pluralize from "pluralize";
 import { chance, randomElement } from "../../../../utils/random";
+import { bar } from "../../../../utils/strings/bar";
 
 export interface EnemyInitializer {
     name: string;
@@ -56,8 +58,12 @@ export class Enemy {
         this.chanceOfWinMessage = chanceOfWinMessage;
     }
 
-    public healthNotification() {
-        return `${this.name} has ${this.health}/${this.maxHealth} hp remaining.`;
+    public status() {
+        return `**${this.name}** has been hit ${pluralize("time", this.hitCount, true)}.\n${this.healthBar()}\n\n`;
+    }
+
+    public healthBar() {
+        return `${bar(this.health, this.maxHealth)} ${this.health}/${this.maxHealth} hp`;
     }
 
     public message(message: string) {

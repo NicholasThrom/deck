@@ -18,9 +18,9 @@ function attack(message: Message) {
 
     enemy.damage(damage);
 
-    message.reply(enemy.healthNotification());
+    message.channel.send(enemy.status());
     if (enemy.isDead()) {
-        message.channel.send(`${enemy.name} has been slain in ${enemy.hitCount} ${enemy.hitCount === 1 ? "hit" : "hits"}!`);
+        message.channel.send(`**${enemy.name}** has been slain!`);
         if (enemy.shouldDeathMessage()) {
             message.channel.send(enemy.deathMessage());
         }
