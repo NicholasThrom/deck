@@ -1,4 +1,4 @@
-import { randomElement, randomIn } from "../../../../utils/random";
+import { randomElement, randomIn } from "../../../../../utils/random";
 import { Enemy, EnemyInitializer } from "./enemy";
 
 // const deathMessages = [

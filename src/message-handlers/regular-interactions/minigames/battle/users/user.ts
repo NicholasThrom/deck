@@ -1,4 +1,4 @@
-import { bar } from "../../../../utils/strings/bar";
+import { bar } from "../../../../../utils/strings/bar";
 
 const defaultMaxHealth = 300;
 

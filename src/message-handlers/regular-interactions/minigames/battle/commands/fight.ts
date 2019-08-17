@@ -1,10 +1,10 @@
 import { Message } from "discord.js";
-import { DefaultingMap } from "../../../../utils/defaulting-dictionary";
-import { randomIn } from "../../../../utils/random";
-import { sequence } from "../../../../utils/sequencer";
-import { Enemy } from "./enemy";
-import { generateEnemy } from "./enemy-generator";
-import { User } from "./user";
+import { DefaultingMap } from "../../../../../utils/defaulting-dictionary";
+import { randomIn } from "../../../../../utils/random";
+import { sequence } from "../../../../../utils/sequencer";
+import { Enemy } from "../enemies/enemy";
+import { generateEnemy } from "../enemies/enemy-generator";
+import { User } from "../users/user";
 
 const enemies: DefaultingMap<string, Enemy> = new DefaultingMap((_) => generateEnemy());
 const users: DefaultingMap<string, User> = new DefaultingMap((id) => new User({ id }));

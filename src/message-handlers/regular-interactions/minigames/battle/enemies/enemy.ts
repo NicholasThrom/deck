@@ -1,6 +1,6 @@
 import * as pluralize from "pluralize";
-import { chance, randomElement } from "../../../../utils/random";
-import { bar } from "../../../../utils/strings/bar";
+import { chance, randomElement } from "../../../../../utils/random";
+import { bar } from "../../../../../utils/strings/bar";
 
 export interface EnemyInitializer {
     name: string;
