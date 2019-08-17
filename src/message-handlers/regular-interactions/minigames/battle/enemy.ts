@@ -25,14 +25,14 @@ export class Enemy {
 
     public readonly name: string;
     public readonly maxHealth: number;
-    public criesOfDespair: string[];
-    public deathMessages: string[];
-    public winMessages: string[];
-    public health: number;
-    public chanceOfCrying: number;
-    public chanceOfDeathMessage: number;
-    public chanceOfWinMessage: number;
+    public readonly criesOfDespair: readonly string[];
+    public readonly deathMessages: readonly string[];
+    public readonly winMessages: readonly string[];
+    public readonly chanceOfCrying: number;
+    public readonly chanceOfDeathMessage: number;
+    public readonly chanceOfWinMessage: number;
 
+    public health: number;
     public hitCount = 0;
 
     public constructor({

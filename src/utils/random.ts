@@ -1,4 +1,4 @@
-export function randomElement<T>(array: T[]) {
+export function randomElement<T>(array: readonly T[]) {
     const index = Math.floor(Math.random() * array.length);
     return array[index];
 }
