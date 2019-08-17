@@ -59,7 +59,7 @@ export class Enemy {
     }
 
     public status() {
-        return `**${this.name}** has been hit ${pluralize("time", this.hitCount, true)}.\n${this.healthBar()}\n\n`;
+        return `**${this.name}** has been hit ${pluralize("time", this.hitCount, true)}.\n${this.healthBar()}`;
     }
 
     public healthBar() {
