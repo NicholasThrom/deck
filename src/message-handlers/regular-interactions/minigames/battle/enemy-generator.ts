@@ -301,6 +301,7 @@ export function generateEnemy() {
                 "buzz",
                 "buzz buzz buzz buzz buzz",
                 "pew pew pew",
+                "According to all known laws of aviation, there is no way a bee should be able to fly",
                 "Hey, honey",
             ],
             chanceOfCrying: 0.7,
