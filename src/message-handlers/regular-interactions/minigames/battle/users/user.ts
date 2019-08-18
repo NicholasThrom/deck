@@ -1,4 +1,5 @@
 import { bar } from "../../../../../utils/strings/bar";
+import { box } from "../../../../../utils/strings/box";
 
 const defaultMaxHealth = 300;
 
@@ -26,7 +27,7 @@ export class User {
     }
 
     public status() {
-        return `<@${this.id}>\n${this.healthBar()}`;
+        return box(`<@${this.id}>\n${this.healthBar()}`);
     }
 
     public healthBar() {

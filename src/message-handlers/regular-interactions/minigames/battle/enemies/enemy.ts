@@ -1,6 +1,7 @@
 import * as pluralize from "pluralize";
 import { chance, randomElement } from "../../../../../utils/random";
 import { bar } from "../../../../../utils/strings/bar";
+import { box } from "../../../../../utils/strings/box";
 
 export interface EnemyInitializer {
     name: string;
@@ -59,7 +60,7 @@ export class Enemy {
     }
 
     public status() {
-        return `**${this.name}** has been hit ${pluralize("time", this.hitCount, true)}.\n${this.healthBar()}`;
+        return box(`**${this.name}** has been hit ${pluralize("time", this.hitCount, true)}.\n${this.healthBar()}`);
     }
 
     public healthBar() {
