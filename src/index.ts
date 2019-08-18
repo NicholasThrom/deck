@@ -9,10 +9,10 @@ function onReady() {
     console.log(`Logged in as ${client.user.tag}!`);
 }
 
-export function setUp() {
+export async function setUp() {
     client.on("ready", onReady);
-    client.on("message", (message) => { handleMessage(client, message); });
-    logIn();
+    client.on("message", async (message) => { await handleMessage(client, message); });
+    await logIn();
 }
 
 async function logIn() {
@@ -20,5 +20,5 @@ async function logIn() {
     const tokenJSON = TypedJSON.parse(tokenBuffer.toString());
     const token = tokenJSON.get("token").string();
     if (!token) { throw new Error("Token missing"); }
-    client.login(token);
+    await client.login(token);
 }

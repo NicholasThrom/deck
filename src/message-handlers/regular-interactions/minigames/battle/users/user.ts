@@ -20,7 +20,7 @@ export class User {
         maxHealth?: number,
         health?: number,
     }) {
-        this.id = id,
+        this.id = id;
         this.maxHealth = maxHealth;
         this.health = health;
     }

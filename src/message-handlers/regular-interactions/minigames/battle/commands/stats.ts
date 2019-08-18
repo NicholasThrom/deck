@@ -1,12 +1,12 @@
 import { Message } from "discord.js";
 import { users } from "../state";
 
-export function stats(message: Message) {
+export async function stats(message: Message) {
     if (!message.content.match(/statu?s|^inv$|inventory/i)) { return; }
 
     const user = users.get(message.author.id);
 
-    message.channel.send(user.status());
+    await message.channel.send(user.status());
 
     return true;
 }

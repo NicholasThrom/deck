@@ -24,7 +24,7 @@ export async function attack(message: Message) {
         return true;
     } else {
         if (enemy.shouldCry()) {
-            message.channel.send(enemy.cryOfDespair());
+            await message.channel.send(enemy.cryOfDespair());
         }
     }
 
