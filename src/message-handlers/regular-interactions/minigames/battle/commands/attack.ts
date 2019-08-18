@@ -2,7 +2,7 @@ import { Message } from "discord.js";
 import { randomIn } from "../../../../../utils/random";
 import { enemies, users } from "../state";
 
-export function attack(message: Message) {
+export async function attack(message: Message) {
     if (!message.content.match(/attack/i)) { return; }
 
     const user = users.get(message.author.id);
@@ -12,12 +12,12 @@ export function attack(message: Message) {
 
     enemy.damage(damage);
 
-    message.channel.send(`<@${user.id}> hit **${enemy.name}**`);
-    message.channel.send(enemy.status());
+    await message.channel.send(`<@${user.id}> hit **${enemy.name}**`);
+    await message.channel.send(enemy.status());
     if (enemy.isDead()) {
-        message.channel.send(`**${enemy.name}** has been slain!`);
+        await message.channel.send(`**${enemy.name}** has been slain!`);
         if (enemy.shouldDeathMessage()) {
-            message.channel.send(enemy.deathMessage());
+            await message.channel.send(enemy.deathMessage());
         }
         enemies.delete(message.channel.id);
 
@@ -32,14 +32,14 @@ export function attack(message: Message) {
 
     user.damage(userDamage);
 
-    message.channel.send(`**${enemy.name}** hit <@${user.id}>`);
-    message.channel.send(user.status());
+    await message.channel.send(`**${enemy.name}** hit <@${user.id}>`);
+    await message.channel.send(user.status());
     if (user.isDead()) {
-        message.channel.send(`<@${user.id}> has been slain!`);
+        await message.channel.send(`<@${user.id}> has been slain!`);
         user.revive();
         enemies.delete(message.channel.id);
         if (enemy.shouldWinMessage()) {
-            message.channel.send(enemy.winMessage());
+            await message.channel.send(enemy.winMessage());
         }
     }
 

@@ -18,12 +18,12 @@ export async function questionTester(message: Message) {
 
     const item = randomElement(items);
 
-    message.reply(`Please say "${item}"`);
+    await message.reply(`Please say "${item}"`);
 
-    addQuestion(questionUntilAnswered((message: Message) => {
+    addQuestion(questionUntilAnswered(async (message: Message) => {
         if (!message.content.toLowerCase().includes(item)) { return; }
 
-        message.reply("Thank you for complying.");
+        await message.reply("Thank you for complying.");
         return true;
     }));
 

@@ -17,6 +17,6 @@ export async function thanker(message: Message) {
 
     if (!content.match(/thank(?:s?| +you)/)) { return; }
 
-    message.reply(randomElement(responses));
+    await message.reply(randomElement(responses));
     return true;
 }

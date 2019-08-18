@@ -1,4 +1,5 @@
 import { Message } from "discord.js";
+import { MaybePromise } from "../../utils/async";
 
 /**
  * Represents an action based on a specific question asked.
@@ -6,10 +7,10 @@ import { Message } from "discord.js";
  * Returns if the question should be kept around,
  * and if it has been responded to.
  */
-export type Question =
-    (message: Message) => {
-        shouldRemove: boolean | undefined | void, responded: boolean | undefined | void,
-    };
+export type Question = (message: Message) => MaybePromise<{
+    shouldRemove: boolean | undefined | void,
+    responded: boolean | undefined | void,
+}>;
 
 /**
  * The questions that are currently active.
@@ -26,9 +27,9 @@ export function addQuestion(question: Question) {
 /**
  * Responds to the questions that exist.
  */
-export function handleQuestionResponse(message: Message) {
+export async function handleQuestionResponse(message: Message) {
     for (let i = 0; i < activeQuestions.length; i++) {
-        const { shouldRemove, responded } = activeQuestions[i](message);
+        const { shouldRemove, responded } = await activeQuestions[i](message);
 
         if (shouldRemove) {
             activeQuestions.splice(i, 1);

@@ -12,13 +12,13 @@ export async function quietGame(message: Message) {
 
     if (!content.match(/quiet *game/i)) { return; }
 
-    message.reply(`let's play the quiet game! For the next ${durationString}, anyone who speaks loses.`);
+    await message.reply(`let's play the quiet game! For the next ${durationString}, anyone who speaks loses.`);
 
     const losers: User[] = [];
 
     addQuestion(questionUntilExpired(
         duration,
-        (message: Message) => {
+        async (message: Message) => {
             if (channel.id !== message.channel.id) { return; }
 
             if (losers.some((loser) => loser.equals(message.author))) { return; }
@@ -31,7 +31,7 @@ export async function quietGame(message: Message) {
                 "you broke the silence.",
             ];
 
-            message.reply(randomElement(responses));
+            await message.reply(randomElement(responses));
 
             losers.push(message.author);
 
@@ -39,19 +39,19 @@ export async function quietGame(message: Message) {
         },
     ));
 
-    delay(duration).then(() => {
-        let loserString = "";
+    await delay(duration);
 
-        if (losers.length === 0) {
-            loserString = "Everyone wins!";
-        } else if (losers.length === 1) {
-            loserString = `Only ${losers[0]} lost.`;
-        } else {
-            loserString = `The users ${losers.slice(0, -1).join(", ")}, and ${losers.slice(-1)[0]} lost. :(`;
-        }
+    let loserString = "";
 
-        message.channel.send(`The quiet game has ended! ${loserString}`);
-    });
+    if (losers.length === 0) {
+        loserString = "Everyone wins!";
+    } else if (losers.length === 1) {
+        loserString = `Only ${losers[0]} lost.`;
+    } else {
+        loserString = `The users ${losers.slice(0, -1).join(", ")}, and ${losers.slice(-1)[0]} lost. :(`;
+    }
+
+    await message.channel.send(`The quiet game has ended! ${loserString}`);
 
     return true;
 }

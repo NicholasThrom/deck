@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
 import { chance, randomElement } from "../../../utils/random";
 
-export function play(message: Message) {
+export async function play(message: Message) {
     const { content } = message;
 
     const match = content.match(/!play(?:top)? (.*)/i);
@@ -9,7 +9,7 @@ export function play(message: Message) {
 
     const name = match[1];
 
-    message.reply(`${name} has been put on the playing deck!`);
+    await message.reply(`${name} has been put on the playing deck!`);
 
     if (chance(0.3)) {
         const responses = [
@@ -22,7 +22,7 @@ export function play(message: Message) {
             `Let's listen ${name} repeatedly until we hate it.`,
             `${name} is kinda bad tbh.`,
         ];
-        message.channel.send(randomElement(responses));
+        await message.channel.send(randomElement(responses));
     }
 
     return true;

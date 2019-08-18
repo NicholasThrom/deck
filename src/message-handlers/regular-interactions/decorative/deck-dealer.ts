@@ -3,7 +3,7 @@ import { delay } from "../../../utils/async";
 import { randomElement, randomIn } from "../../../utils/random";
 
 export function deckDealer(message: Message) {
-    delay(randomIn(10000, 10000000)).then(() => {
+    delay(randomIn(10000, 10000000)).then(async () => {
         const responses = [
             "wanna buy a deck?",
             "psst... wanna buy a deck?",
@@ -12,6 +12,6 @@ export function deckDealer(message: Message) {
             "you looking for some decks?",
             "hey, you looking for some decks?",
         ];
-        message.reply(randomElement(responses));
+        await message.reply(randomElement(responses));
     });
 }

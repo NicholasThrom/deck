@@ -1,19 +1,6 @@
 import { randomElement, randomIn } from "../../../../../utils/random";
 import { Enemy, EnemyInitializer } from "./enemy";
 
-// const deathMessages = [
-//     `decKO! in ${hits} hits!`,
-//     `I just got dekt in ${hits} hits!`,
-//     `I've been decked! It took ${hits} hits!`,
-//     `I'm out! You win a deck! It only took you ${hits} hits!`,
-//     `I got deckstroyed! Only ${hits} hits!`,
-//     `In ${hits} hits I was brought down to the deck!`,
-//     `I'm all decked out. Only took ${hits} hits.`,
-//     `I'm lying on the deck, defeated. It took ${hits} hits.`,
-//     `I've been deckfeated in ${hits} hits.`,
-//     `Decked! ${hits} hits.`,
-// ];
-
 /**
  * Generates a random enemy.
  */
