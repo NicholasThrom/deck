@@ -548,6 +548,7 @@ export function generateEnemy() {
             }[hitType]),
             strength: randomIn(10, 20),
             defence: randomIn(200, 500),
+            criticalHitMultiplier: 1000,
             maxHealth: randomIn(100, 400),
         }),
         () => ({

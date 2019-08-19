@@ -44,6 +44,13 @@ export class DefaultingMap<Key, Value> {
     }
 
     /**
+     * Returns if the dictionary has set the specified key yet.
+     */
+    public has(key: Key) {
+        return this.map.has(key);
+    }
+
+    /**
      * Deletes the specified key.
      */
     public delete(key: Key) {
