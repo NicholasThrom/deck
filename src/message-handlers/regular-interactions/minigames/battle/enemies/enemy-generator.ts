@@ -1,5 +1,5 @@
 import { randomElement, randomIn } from "../../../../../utils/random";
-import { Enemy, EnemyInitializer } from "./enemy";
+import { Enemy, EnemyInitializer, HitType } from "./enemy";
 
 /**
  * Generates a random enemy.
@@ -46,6 +46,12 @@ export function generateEnemy() {
             winMessages: [
                 "Quack quack quack!",
             ],
+            hitMessage: (hitType: HitType, name: string, target: string, damage: number) => ({
+                miss: `**${name}** missed **${target}**.`,
+                weak: `**${name}** pecked **${target}**. It did ${damage} hp damage.`,
+                normal: `**${name}** bit **${target}**. It did ${damage} hp damage.`,
+                critical: `**${name}** demolished **${target}**. It did ${damage} hp damage.`,
+            }[hitType]),
             strength: randomIn(20, 60),
             defence: randomIn(60, 120),
             maxHealth: randomIn(100, 400),
@@ -70,6 +76,12 @@ export function generateEnemy() {
                 "That's what I thought.",
                 "Can't deck the deck boss.",
             ],
+            hitMessage: (hitType: HitType, name: string, target: string, damage: number) => ({
+                miss: `**${name}** missed **${target}**.`,
+                weak: `**${name}** grazed **${target}**. It did ${damage} hp damage.`,
+                normal: `**${name}** whacked **${target}**. It did ${damage} hp damage.`,
+                critical: `**${name}** stomped **${target}**. It did ${damage} hp damage.`,
+            }[hitType]),
             strength: randomIn(50, 200),
             defence: randomIn(10, 30),
             maxHealth: randomIn(1000, 2000),
@@ -89,6 +101,12 @@ export function generateEnemy() {
                 "Please come again!",
                 "Thank you for visiting Home Depot",
             ],
+            hitMessage: (hitType: HitType, name: string, target: string, damage: number) => ({
+                miss: `**${name}** missed **${target}**.`,
+                weak: `**${name}** offered to help **${target}**. It did ${damage} hp damage.`,
+                normal: `**${name}** gave **${target}** their change. It did ${damage} hp damage.`,
+                critical: `**${name}** gave woodworking advice to **${target}**. It did ${damage} hp damage.`,
+            }[hitType]),
             strength: randomIn(20, 40),
             defence: randomIn(20, 80),
             maxHealth: randomIn(200, 500),
@@ -118,6 +136,12 @@ export function generateEnemy() {
                 "See ya later, alligator",
                 "Farewell, my child",
             ],
+            hitMessage: (hitType: HitType, name: string, target: string, damage: number) => ({
+                miss: `**${name}** pretended to hit **${target}**.`,
+                weak: `**${name}** tickled **${target}**. It did ${damage} hp damage.`,
+                normal: `**${name}** mocked **${target}**. It did ${damage} hp damage.`,
+                critical: `**${name}** sneezed at **${target}**. It did ${damage} hp damage.`,
+            }[hitType]),
             strength: randomIn(10, 20),
             defence: randomIn(200, 400),
             maxHealth: randomIn(100, 800),
@@ -138,6 +162,12 @@ export function generateEnemy() {
             ],
             deathMessages: [""],
             winMessages: [""],
+            hitMessage: (hitType: HitType, name: string, target: string, damage: number) => ({
+                miss: `**${name}** missed **${target}**.`,
+                weak: `**${name}** grazed **${target}**. It did ${damage} hp damage.`,
+                normal: `**${name}** hit **${target}**. It did ${damage} hp damage.`,
+                critical: `**${name}** hammered **${target}**. It did ${damage} hp damage.`,
+            }[hitType]),
             strength: randomIn(100, 200),
             defence: randomIn(30, 50),
             maxHealth: randomIn(100, 300),
@@ -155,6 +185,12 @@ export function generateEnemy() {
                 "I've gone up in flames.",
                 "please... take care of my... burgers... they need to be flipped",
             ],
+            hitMessage: (hitType: HitType, name: string, target: string, damage: number) => ({
+                miss: `**${name}** missed **${target}**.`,
+                weak: `**${name}** toasted **${target}**. It did ${damage} hp damage.`,
+                normal: `**${name}** grilled **${target}**. It did ${damage} hp damage.`,
+                critical: `**${name}** set **${target}** on fire. It did ${damage} hp damage.`,
+            }[hitType]),
             winMessages: [
                 "",
             ],
@@ -170,6 +206,12 @@ export function generateEnemy() {
             winMessages: [
                 "glimp glomp",
             ],
+            hitMessage: (hitType: HitType, name: string, target: string, damage: number) => ({
+                miss: `**${name}** glabbed at **${target}**.`,
+                weak: `**${name}** glimped **${target}**. It did ${damage} hp damage.`,
+                normal: `**${name}** glooped **${target}**. It did ${damage} hp damage.`,
+                critical: `**${name}** glomped **${target}**. It did ${damage} hp damage.`,
+            }[hitType]),
             strength: randomIn(10, 20),
             defence: randomIn(20, 40),
             maxHealth: randomIn(10, 400),
@@ -182,6 +224,12 @@ export function generateEnemy() {
             winMessages: [
                 "caw caw!",
             ],
+            hitMessage: (hitType: HitType, name: string, target: string, damage: number) => ({
+                miss: `**${name}** missed **${target}**.`,
+                weak: `**${name}** pecked **${target}**. It did ${damage} hp damage.`,
+                normal: `**${name}** scratched **${target}**. It did ${damage} hp damage.`,
+                critical: `**${name}** dropped **${target}** from the sky. It did ${damage} hp damage.`,
+            }[hitType]),
             strength: randomIn(10, 20),
             defence: randomIn(200, 400),
             maxHealth: randomIn(100, 400),
@@ -213,6 +261,12 @@ export function generateEnemy() {
             winMessages: [
                 "Get spooked.",
             ],
+            hitMessage: (hitType: HitType, name: string, target: string, damage: number) => ({
+                miss: `**${name}** missed **${target}**.`,
+                weak: `**${name}** poured milk on **${target}**. It did ${damage} hp damage.`,
+                normal: `**${name}** dooted **${target}**. It did ${damage} hp damage.`,
+                critical: `**${name}** recruited **${target}** to the skeleton army. It did ${damage} hp damage.`,
+            }[hitType]),
             strength: randomIn(50, 150),
             defence: randomIn(40, 80),
             maxHealth: randomIn(100, 1000),
@@ -237,6 +291,12 @@ export function generateEnemy() {
                 "Alone again.",
                 "I'll find you.",
             ],
+            hitMessage: (hitType: HitType, name: string, target: string, damage: number) => ({
+                miss: `**${name}** missed **${target}**.`,
+                weak: `**${name}** winked. It did ${damage} hp damage.`,
+                normal: `**${name}** smiled. It did ${damage} hp damage.`,
+                critical: `**${name}** cried. It did ${damage} hp damage.`,
+            }[hitType]),
             strength: randomIn(20, 40),
             defence: randomIn(100, 300),
             maxHealth: randomIn(100, 600),
@@ -258,6 +318,12 @@ export function generateEnemy() {
                 "The slime represents the state of the healthcare system in the United States.",
                 "Oh heck, I won.",
             ],
+            hitMessage: (hitType: HitType, name: string, target: string, damage: number) => ({
+                miss: `**${name}** made a smug remark.`,
+                weak: `**${name}** taunted **${target}**. It did ${damage} hp damage.`,
+                normal: `**${name}** oozed on **${target}**. It did ${damage} hp damage.`,
+                critical: `**Oh heck. ${name}** just leg-hand slapped **${target}**. It did ${damage} hp damage. Crikey!`,
+            }[hitType]),
             strength: randomIn(40, 80),
             defence: randomIn(100, 300),
             maxHealth: randomIn(100, 600),
@@ -281,6 +347,12 @@ export function generateEnemy() {
                 "Foolish mortal!",
                 "I'll get you eventually. I get everyone eventually.",
             ],
+            hitMessage: (hitType: HitType, name: string, target: string, damage: number) => ({
+                miss: `**${name}** laughed at **${target}**.`,
+                weak: `**${name}** knocked. It did ${damage} hp damage.`,
+                normal: `**${name}** hit **${target}** with his scythe. It did ${damage} hp damage.`,
+                critical: `**${name}** let time pass, and **${target}** got older. It did ${damage} hp damage.`,
+            }[hitType]),
             strength: randomIn(50, 100),
             defence: randomIn(50, 200),
             maxHealth: randomIn(1000, 3000),
@@ -301,6 +373,12 @@ export function generateEnemy() {
                 "Foolish mortal!",
                 "Don't look back!",
             ],
+            hitMessage: (hitType: HitType, name: string, target: string, damage: number) => ({
+                miss: `**${name}** spoke to **${target}**.`,
+                weak: `**${name}** disapproved **${target}**. It did ${damage} hp damage.`,
+                normal: `**${name}** judged **${target}**. It did ${damage} hp damage.`,
+                critical: `**${name}** smote **${target}**. It did ${damage} hp damage.`,
+            }[hitType]),
             strength: randomIn(50, 200),
             defence: randomIn(50, 100),
             maxHealth: randomIn(2000, 6000),
@@ -327,6 +405,12 @@ export function generateEnemy() {
                 "Bees are dying at an alarming rate, but you can help",
                 "buzz buzz!",
             ],
+            hitMessage: (hitType: HitType, name: string, target: string, damage: number) => ({
+                miss: `**${name}** buzzed at **${target}**.`,
+                weak: `**${name}** buzzed at **${target}**. It did ${damage} hp damage.`,
+                normal: `**${name}** stung **${target}**. It did ${damage} hp damage.`,
+                critical: `**${name}** consumed **${target}**. It did ${damage} hp damage.`,
+            }[hitType]),
             strength: randomIn(30, 50),
             defence: randomIn(30, 100),
             maxHealth: randomIn(500, 700),
@@ -404,6 +488,12 @@ export function generateEnemy() {
             winMessages: [
                 "Come back and square up, bruh!",
             ],
+            hitMessage: (hitType: HitType, name: string, target: string, damage: number) => ({
+                miss: `**${name}** drank some monster.`,
+                weak: `**${name}** shoved **${target}**. It did ${damage} hp damage.`,
+                normal: `**${name}** punched **${target}**. It did ${damage} hp damage.`,
+                critical: `**${name}** punched **${target}** right through the drywall. It did ${damage} hp damage.`,
+            }[hitType]),
             strength: randomIn(80, 140),
             defence: randomIn(30, 50),
             maxHealth: randomIn(100, 600),
@@ -424,6 +514,12 @@ export function generateEnemy() {
             winMessages: [
                 "Bidoof!",
             ],
+            hitMessage: (hitType: HitType, name: string, target: string, damage: number) => ({
+                miss: `**${name}** used Growl.`,
+                weak: `**${name}** used Tackle. It did ${damage} hp damage.`,
+                normal: `**${name}** used Headbutt. It did ${damage} hp damage.`,
+                critical: `**${name}** used Superpower. It's super effective! It did ${damage} hp damage.`,
+            }[hitType]),
             strength: randomIn(30, 50),
             defence: randomIn(50, 80),
             maxHealth: randomIn(100, 400),
@@ -444,6 +540,12 @@ export function generateEnemy() {
             winMessages: [
                 "Moo!",
             ],
+            hitMessage: (hitType: HitType, name: string, target: string, damage: number) => ({
+                miss: `**${name}** grazed.`,
+                weak: `**${name}** mooed at **${target}**. It did ${damage} hp damage.`,
+                normal: `**${name}** headbutted **${target}**. It did ${damage} hp damage.`,
+                critical: `**${name}** trampled **${target}**. It did ${damage} hp damage.`,
+            }[hitType]),
             strength: randomIn(10, 20),
             defence: randomIn(200, 500),
             maxHealth: randomIn(100, 400),
@@ -469,6 +571,12 @@ export function generateEnemy() {
             winMessages: [
                 "You better be getting your manager!",
             ],
+            hitMessage: (hitType: HitType, name: string, target: string, damage: number) => ({
+                miss: `**${name}** sighed dramatically.`,
+                weak: `**${name}** threatened **${target}**. It did ${damage} hp damage.`,
+                normal: `**${name}** called **${target}**'s manager. It did ${damage} hp damage.`,
+                critical: `**${name}** left a bad Yelp review. It did ${damage} hp damage.`,
+            }[hitType]),
             strength: randomIn(50, 120),
             defence: randomIn(30, 80),
             maxHealth: randomIn(400, 500),
@@ -491,6 +599,12 @@ export function generateEnemy() {
                 "L",
                 "rekt",
             ],
+            hitMessage: (hitType: HitType, name: string, target: string, damage: number) => ({
+                miss: `**${name}** missed **${target}**.`,
+                weak: `**${name}** talked smack. It did ${damage} hp damage.`,
+                normal: `**${name}** clicked on **${target}**. It did ${damage} hp damage.`,
+                critical: `**${name}** ${randomElement(["comboed", "headshot", "DDOSed"])} **${target}**. It did ${damage} hp damage.`,
+            }[hitType]),
             strength: randomIn(10, 30),
             defence: randomIn(40, 80),
             maxHealth: randomIn(100, 300),

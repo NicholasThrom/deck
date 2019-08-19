@@ -58,7 +58,7 @@ const defaultChanceOfDeathMessage = 1.0;
 const defaultChanceOfWinMessage = 1.0;
 
 const hitTypes = ["miss", "weak", "normal", "critical"] as const;
-type HitType = ElementOf<typeof hitTypes>;
+export type HitType = ElementOf<typeof hitTypes>;
 
 /**
  * Represents an enemy that can be fought.
