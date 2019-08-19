@@ -3,7 +3,7 @@ export function randomElement<T>(array: readonly T[]) {
     return array[index];
 }
 
-export function weightedRandomElement<T>(array: readonly [number, T][]) {
+export function weightedRandomElement<T>(array: readonly (readonly [number, T])[]) {
     const total = array.reduce((a, b) => a + b[0], 0);
     const weight = Math.random() * total;
 
@@ -11,7 +11,7 @@ export function weightedRandomElement<T>(array: readonly [number, T][]) {
     for (const item of array) {
         runningTotal += item[0];
         if (runningTotal > weight) {
-            return item;
+            return item[1];
         }
     }
     throw new Error("This code should be unreachable");

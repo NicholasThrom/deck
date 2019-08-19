@@ -1,3 +1,4 @@
+import { Guild } from "discord.js";
 import { bar } from "../../../../../utils/strings/bar";
 import { box } from "../../../../../utils/strings/box";
 
@@ -26,8 +27,12 @@ export class User {
         this.health = health;
     }
 
-    public status() {
-        return box(`<@${this.id}>\n${this.healthBar()}`);
+    public status(guild: Guild) {
+        return box(`**${this.nameInGuild(guild)}**\n${this.healthBar()}`);
+    }
+
+    public nameInGuild(guild: Guild) {
+        return guild.member(this.id).displayName;
     }
 
     public healthBar() {

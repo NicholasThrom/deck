@@ -12,7 +12,7 @@ export async function attack(message: Message) {
 
     enemy.damage(damage);
 
-    await message.channel.send(`<@${user.id}> hit **${enemy.name}**`);
+    await message.channel.send(`**${user.nameInGuild(message.guild)}** hit **${enemy.name}**`);
     await message.channel.send(enemy.status());
     if (enemy.isDead()) {
         await message.channel.send(`**${enemy.name}** has been slain!`);
@@ -28,14 +28,13 @@ export async function attack(message: Message) {
         }
     }
 
-    const userDamage = randomIn(10, 80);
+    const { damage: userDamage, message: damageMessage } = enemy.getDamage(100);
 
+    await message.channel.send(damageMessage(message.guild.member(user.id).displayName));
     user.damage(userDamage);
-
-    await message.channel.send(`**${enemy.name}** hit <@${user.id}>`);
-    await message.channel.send(user.status());
+    await message.channel.send(user.status(message.guild));
     if (user.isDead()) {
-        await message.channel.send(`<@${user.id}> has been slain!`);
+        await message.channel.send(`**${message.guild.member(user.id).displayName}** has been slain!`);
         user.revive();
         enemies.delete(message.channel.id);
         if (enemy.shouldWinMessage()) {

@@ -6,7 +6,7 @@ export async function stats(message: Message) {
 
     const user = users.get(message.author.id);
 
-    await message.channel.send(user.status());
+    await message.channel.send(user.status(message.guild));
 
     return true;
 }
