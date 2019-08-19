@@ -24,6 +24,7 @@ export interface EnemyInitializer {
     normalHitMultiplier?: number;
     criticalHitMultiplier?: number;
 
+    hitMessage?: (hitType: HitType, name: string, target: string, damage: number) => string;
     criesOfDespair: string[];
     deathMessages: string[];
     winMessages: string[];
@@ -44,6 +45,13 @@ const defaultMissMultiplier = 0;
 const defaultWeakHitMultiplier = 50;
 const defaultNormalHitMultiplier = 100;
 const defaultCriticalHitMultiplier = 150;
+
+const defaultHitMessage = (hitType: HitType, name: string, target: string, damage: number) => ({
+    miss: `**${name}** missed **${target}**.`,
+    weak: `**${name}** grazed **${target}**. It did ${damage} hp damage.`,
+    normal: `**${name}** hit **${target}**. It did ${damage} hp damage.`,
+    critical: `**${name}** walloped **${target}**. It did ${damage} hp damage.`,
+}[hitType]);
 
 const defaultChanceOfCrying = 0.4;
 const defaultChanceOfDeathMessage = 1.0;
@@ -76,6 +84,7 @@ export class Enemy {
     public readonly normalHitMultiplier: number;
     public readonly criticalHitMultiplier: number;
 
+    public readonly hitMessage: (hitType: HitType, name: string, target: string, damage: number) => string;
     public readonly criesOfDespair: readonly string[];
     public readonly deathMessages: readonly string[];
     public readonly winMessages: readonly string[];
@@ -102,6 +111,7 @@ export class Enemy {
         normalHitMultiplier = defaultNormalHitMultiplier,
         criticalHitMultiplier = defaultCriticalHitMultiplier,
 
+        hitMessage = defaultHitMessage,
         criesOfDespair,
         deathMessages,
         winMessages,
@@ -128,6 +138,7 @@ export class Enemy {
         this.normalHitMultiplier = normalHitMultiplier;
         this.criticalHitMultiplier = criticalHitMultiplier;
 
+        this.hitMessage = hitMessage;
         this.criesOfDespair = criesOfDespair;
         this.deathMessages = deathMessages;
         this.winMessages = winMessages;
@@ -163,12 +174,7 @@ export class Enemy {
     }
 
     public getHitMessage(hitType: HitType, damage: number): (target: string) => string {
-        return {
-            miss: (target: string) => `**${this.name}** missed **${target}**.`,
-            weak: (target: string) => `**${this.name}** grazed **${target}**. It did ${damage} hp damage.`,
-            normal: (target: string) => `**${this.name}** hit **${target}**. It did ${damage} hp damage.`,
-            critical: (target: string) => `**${this.name}** walloped **${target}**. It did ${damage} hp damage.`,
-        }[hitType];
+        return (target: string) => this.hitMessage(hitType, this.name, target, damage);
     }
 
     public getHitType(): HitType {
