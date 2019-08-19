@@ -1,3 +1,4 @@
+import dedent = require("dedent");
 import * as pluralize from "pluralize";
 import { ElementOf } from "../../../../../utils/element-of";
 import { chance, randomElement, randomIn, weightedRandomElement } from "../../../../../utils/random";
@@ -136,7 +137,12 @@ export class Enemy {
     }
 
     public status() {
-        return box(`**${this.name}** has been hit ${pluralize("time", this.hitCount, true)}.\n${this.healthBar()}`);
+        return box(dedent`
+            **${this.name}**
+            ${this.healthBar()}
+            _Strength_: ${this.strength} | _Defence_: ${this.defence}
+            Hit ${pluralize("time", this.hitCount, true)}
+        `);
     }
 
     public healthBar() {

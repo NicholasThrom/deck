@@ -1,3 +1,4 @@
+import dedent = require("dedent");
 import { Guild } from "discord.js";
 import { ElementOf } from "../../../../../utils/element-of";
 import { randomIn, weightedRandomElement } from "../../../../../utils/random";
@@ -101,7 +102,11 @@ export class User {
     }
 
     public status(guild: Guild) {
-        return box(`**${this.nameInGuild(guild)}**\n${this.healthBar()}`);
+        return box(dedent`
+            **${this.nameInGuild(guild)}**
+            ${this.healthBar()}
+            _Strength_: ${this.strength} | _Defence_: ${this.defence}
+        `);
     }
 
     public nameInGuild(guild: Guild) {
