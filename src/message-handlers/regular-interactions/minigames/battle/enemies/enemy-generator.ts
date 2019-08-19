@@ -32,8 +32,8 @@ export function generateEnemy() {
         "Haha",
     ];
 
-    const enemies: EnemyInitializer[] = [
-        {
+    const enemies: (() => EnemyInitializer)[] = [
+        () => ({
             name: "Angry Duck",
             criesOfDespair: [
                 "quack!",
@@ -46,9 +46,11 @@ export function generateEnemy() {
             winMessages: [
                 "Quack quack quack!",
             ],
+            strength: randomIn(20, 60),
+            defence: randomIn(60, 120),
             maxHealth: randomIn(100, 400),
-        },
-        {
+        }),
+        () => ({
             name: "Deck Boss",
             criesOfDespair: [
                 "You won't defeat me!",
@@ -68,9 +70,11 @@ export function generateEnemy() {
                 "That's what I thought.",
                 "Can't deck the deck boss.",
             ],
+            strength: randomIn(50, 200),
+            defence: randomIn(10, 30),
             maxHealth: randomIn(1000, 2000),
-        },
-        {
+        }),
+        () => ({
             name: "Home Depot Employee",
             criesOfDespair: [
                 ...criesOfDespair,
@@ -85,9 +89,11 @@ export function generateEnemy() {
                 "Please come again!",
                 "Thank you for visiting Home Depot",
             ],
+            strength: randomIn(20, 40),
+            defence: randomIn(20, 80),
             maxHealth: randomIn(200, 500),
-        },
-        {
+        }),
+        () => ({
             name: "Dad",
             criesOfDespair: [
                 "Hi hungry, I'm dad.",
@@ -112,16 +118,18 @@ export function generateEnemy() {
                 "See ya later, alligator",
                 "Farewell, my child",
             ],
+            strength: randomIn(10, 20),
+            defence: randomIn(200, 400),
             maxHealth: randomIn(100, 800),
-        },
-        {
+        }),
+        () => ({
             name: "The Builder of Decks",
             criesOfDespair,
             deathMessages,
             winMessages,
             maxHealth: randomIn(400, 600),
-        },
-        {
+        }),
+        () => ({
             name: "Anthropomorphic Hammer",
             criesOfDespair: [
                 "wham!",
@@ -130,9 +138,11 @@ export function generateEnemy() {
             ],
             deathMessages: [""],
             winMessages: [""],
+            strength: randomIn(100, 200),
+            defence: randomIn(30, 50),
             maxHealth: randomIn(100, 300),
-        },
-        {
+        }),
+        () => ({
             name: "The Griller",
             criesOfDespair: [
                 "You're on fire!",
@@ -148,9 +158,11 @@ export function generateEnemy() {
             winMessages: [
                 "",
             ],
+            strength: randomIn(50, 150),
+            defence: randomIn(20, 40),
             maxHealth: randomIn(300, 400),
-        },
-        {
+        }),
+        () => ({
             name: "Deck Slug",
             criesOfDespair: ["gloop", "glump", "glorp", "glurgle", "gludge"],
             chanceOfCrying: 0.8,
@@ -158,9 +170,11 @@ export function generateEnemy() {
             winMessages: [
                 "glimp glomp",
             ],
+            strength: randomIn(10, 20),
+            defence: randomIn(20, 40),
             maxHealth: randomIn(10, 400),
-        },
-        {
+        }),
+        () => ({
             name: "Bird",
             criesOfDespair: ["chirp", "squawk", "beep", "cheep", "caw"],
             chanceOfCrying: 0.8,
@@ -168,16 +182,20 @@ export function generateEnemy() {
             winMessages: [
                 "caw caw!",
             ],
+            strength: randomIn(10, 20),
+            defence: randomIn(200, 400),
             maxHealth: randomIn(100, 400),
-        },
-        {
+        }),
+        () => ({
             name: "Keeper of the decks",
             criesOfDespair,
             deathMessages,
             winMessages,
+            strength: randomIn(50, 150),
+            defence: randomIn(50, 150),
             maxHealth: randomIn(500, 1500),
-        },
-        {
+        }),
+        () => ({
             name: "Deck Skeleton",
             criesOfDespair: [
                 "spooky scary skeleton",
@@ -195,9 +213,11 @@ export function generateEnemy() {
             winMessages: [
                 "Get spooked.",
             ],
+            strength: randomIn(50, 150),
+            defence: randomIn(40, 80),
             maxHealth: randomIn(100, 1000),
-        },
-        {
+        }),
+        () => ({
             name: "Mysterious Deck Child",
             criesOfDespair: [
                 "Hello",
@@ -217,9 +237,11 @@ export function generateEnemy() {
                 "Alone again.",
                 "I'll find you.",
             ],
+            strength: randomIn(20, 40),
+            defence: randomIn(100, 300),
             maxHealth: randomIn(100, 600),
-        },
-        {
+        }),
+        () => ({
             name: "Slimeboy",
             criesOfDespair: [
                 "I ain't afraid of no leg-hand!",
@@ -236,9 +258,11 @@ export function generateEnemy() {
                 "The slime represents the state of the healthcare system in the United States.",
                 "Oh heck, I won.",
             ],
+            strength: randomIn(40, 80),
+            defence: randomIn(100, 300),
             maxHealth: randomIn(100, 600),
-        },
-        {
+        }),
+        () => ({
             name: "Death",
             criesOfDespair: [
                 "You cannot kill that which has no life!",
@@ -257,9 +281,11 @@ export function generateEnemy() {
                 "Foolish mortal!",
                 "I'll get you eventually. I get everyone eventually.",
             ],
+            strength: randomIn(50, 100),
+            defence: randomIn(50, 200),
             maxHealth: randomIn(1000, 3000),
-        },
-        {
+        }),
+        () => ({
             name: "God Himself",
             criesOfDespair: [
                 "Let there be light!",
@@ -275,9 +301,11 @@ export function generateEnemy() {
                 "Foolish mortal!",
                 "Don't look back!",
             ],
+            strength: randomIn(50, 200),
+            defence: randomIn(50, 100),
             maxHealth: randomIn(2000, 6000),
-        },
-        {
+        }),
+        () => ({
             name: "A Swarm of Bees",
             criesOfDespair: [
                 "bzzzzzzz",
@@ -299,51 +327,65 @@ export function generateEnemy() {
                 "Bees are dying at an alarming rate, but you can help",
                 "buzz buzz!",
             ],
+            strength: randomIn(30, 50),
+            defence: randomIn(30, 100),
             maxHealth: randomIn(500, 700),
-        },
-        {
+        }),
+        () => ({
             name: "Deck Builder",
             criesOfDespair,
             deathMessages,
             winMessages,
+            strength: randomIn(30, 90),
+            defence: randomIn(30, 90),
             maxHealth: randomIn(500, 600),
-        },
-        {
+        }),
+        () => ({
             name: "Deck Layer",
             criesOfDespair,
             deathMessages,
             winMessages,
+            strength: randomIn(30, 90),
+            defence: randomIn(30, 90),
             maxHealth: randomIn(600, 800),
-        },
-        {
+        }),
+        () => ({
             name: "The Carpenter",
             criesOfDespair,
             deathMessages,
             winMessages,
+            strength: randomIn(30, 90),
+            defence: randomIn(30, 90),
             maxHealth: randomIn(200, 400),
-        },
-        {
+        }),
+        () => ({
             name: "The Decker",
             criesOfDespair,
             deathMessages,
             winMessages,
+            strength: randomIn(30, 90),
+            defence: randomIn(30, 90),
             maxHealth: randomIn(400, 800),
-        },
-        {
+        }),
+        () => ({
             name: "Deck",
             criesOfDespair,
             deathMessages,
             winMessages,
+            strength: randomIn(30, 90),
+            defence: randomIn(30, 90),
             maxHealth: randomIn(300, 900),
-        },
-        {
+        }),
+        () => ({
             name: "The Man",
             criesOfDespair,
             deathMessages,
             winMessages,
+            strength: randomIn(30, 90),
+            defence: randomIn(30, 90),
             maxHealth: randomIn(200, 800),
-        },
-        {
+        }),
+        () => ({
             name: "Kyle",
             criesOfDespair: [
                 "I'll punch a hole in your drywall!",
@@ -362,9 +404,11 @@ export function generateEnemy() {
             winMessages: [
                 "Come back and square up, bruh!",
             ],
+            strength: randomIn(80, 140),
+            defence: randomIn(30, 50),
             maxHealth: randomIn(100, 600),
-        },
-        {
+        }),
+        () => ({
             name: "Bidoof",
             criesOfDespair: [
                 "Bidoof",
@@ -380,9 +424,11 @@ export function generateEnemy() {
             winMessages: [
                 "Bidoof!",
             ],
+            strength: randomIn(30, 50),
+            defence: randomIn(50, 80),
             maxHealth: randomIn(100, 400),
-        },
-        {
+        }),
+        () => ({
             name: "Cow",
             criesOfDespair: [
                 "mooo",
@@ -398,9 +444,11 @@ export function generateEnemy() {
             winMessages: [
                 "Moo!",
             ],
+            strength: randomIn(10, 20),
+            defence: randomIn(200, 500),
             maxHealth: randomIn(100, 400),
-        },
-        {
+        }),
+        () => ({
             name: "Karen",
             criesOfDespair: [
                 "Let me speak with your manager",
@@ -421,9 +469,11 @@ export function generateEnemy() {
             winMessages: [
                 "You better be getting your manager!",
             ],
+            strength: randomIn(50, 120),
+            defence: randomIn(30, 80),
             maxHealth: randomIn(400, 500),
-        },
-        {
+        }),
+        () => ({
             name: "Oppressed Gamer",
             criesOfDespair: [
                 "\\*sniff\\* Achsually, maining Peach in SmashBros is...",
@@ -441,11 +491,13 @@ export function generateEnemy() {
                 "L",
                 "rekt",
             ],
+            strength: randomIn(10, 30),
+            defence: randomIn(40, 80),
             maxHealth: randomIn(100, 300),
-        },
+        }),
     ];
 
-    const enemy = randomElement(enemies);
+    const enemy = randomElement(enemies)();
 
     return new Enemy({
         ...enemy,

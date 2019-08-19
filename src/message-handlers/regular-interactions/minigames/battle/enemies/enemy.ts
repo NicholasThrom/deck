@@ -115,8 +115,8 @@ export class Enemy {
         this.health = Math.floor(health);
         this.maxHealth = Math.floor(maxHealth);
 
-        this.strength = strength;
-        this.defence = defence;
+        this.strength = Math.floor(strength);
+        this.defence = Math.floor(defence);
         this.variance = variance;
 
         this.missChanceWeight = missChanceWeight;
@@ -140,7 +140,7 @@ export class Enemy {
         return box(dedent`
             **${this.name}**
             ${this.healthBar()}
-            _Strength_: ${this.strength} | _Defence_: ${this.defence}
+            _Attack_: ${this.strength} | _Defence_: ${this.defence}
             Hit ${pluralize("time", this.hitCount, true)}
         `);
     }

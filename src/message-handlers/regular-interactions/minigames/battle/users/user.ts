@@ -105,7 +105,7 @@ export class User {
         return box(dedent`
             **${this.nameInGuild(guild)}**
             ${this.healthBar()}
-            _Strength_: ${this.strength} | _Defence_: ${this.defence}
+            _Attack_: ${this.strength} | _Defence_: ${this.defence}
         `);
     }
 
