@@ -1,4 +1,5 @@
 import { Message } from "discord.js";
+import { randomIn } from "../../../../../utils/random";
 import { enemies, users } from "../state";
 
 export async function attack(message: Message) {
@@ -19,6 +20,9 @@ export async function attack(message: Message) {
             await message.channel.send(enemy.deathMessage());
         }
         enemies.delete(message.channel.id);
+
+        user.strength += Math.floor(randomIn(5, 15));
+        user.defence += Math.floor(randomIn(5, 15));
 
         return true;
     } else {

@@ -32,8 +32,8 @@ export class User {
     public readonly maxHealth: number;
     public health: number;
 
-    public readonly strength = defaultStrength;
-    public readonly defence = defaultDefence;
+    public strength = defaultStrength;
+    public defence = defaultDefence;
     public readonly variance = defaultVariance;
 
     public readonly missChanceWeight = defaultMissChanceWeight;
