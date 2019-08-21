@@ -15,6 +15,6 @@ export function deckDealer(message: Message) {
             "you looking for some decks?",
             "hey, you looking for some decks?",
         ];
-        await message.reply(randomElement(responses));
+        message.reply(randomElement(responses));
     });
 }

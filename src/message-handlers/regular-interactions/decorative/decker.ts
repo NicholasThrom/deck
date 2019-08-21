@@ -9,10 +9,10 @@ const responses = [
     "no deck for you :(",
 ];
 
-export async function decker(message: Message) {
+export function decker(message: Message) {
     const { content } = message;
 
     if (!content.match(/deck/i)) { return; }
-    await message.reply(randomElement(responses));
+    message.reply(randomElement(responses));
     return true;
 }

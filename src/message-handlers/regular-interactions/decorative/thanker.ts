@@ -12,11 +12,11 @@ const responses = [
     "thank yourself, loser",
 ];
 
-export async function thanker(message: Message) {
+export function thanker(message: Message) {
     const { content } = message;
 
     if (!content.match(/thank(?:s?| +you)/)) { return; }
 
-    await message.reply(randomElement(responses));
+    message.reply(randomElement(responses));
     return true;
 }

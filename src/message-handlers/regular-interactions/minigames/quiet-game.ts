@@ -12,7 +12,7 @@ export async function quietGame(message: Message) {
 
     if (!content.match(/quiet *game/i)) { return; }
 
-    await message.reply(`let's play the quiet game! For the next ${durationString}, anyone who speaks loses.`);
+    message.reply(`let's play the quiet game! For the next ${durationString}, anyone who speaks loses.`);
 
     const losers: User[] = [];
 
@@ -31,7 +31,7 @@ export async function quietGame(message: Message) {
                 "you broke the silence.",
             ];
 
-            await message.reply(randomElement(responses));
+            message.reply(randomElement(responses));
 
             losers.push(message.author);
 
@@ -51,7 +51,7 @@ export async function quietGame(message: Message) {
         loserString = `The users ${losers.slice(0, -1).join(", ")}, and ${losers.slice(-1)[0]} lost. :(`;
     }
 
-    await message.channel.send(`The quiet game has ended! ${loserString}`);
+    message.channel.send(`The quiet game has ended! ${loserString}`);
 
     return true;
 }

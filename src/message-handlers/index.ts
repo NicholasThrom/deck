@@ -1,5 +1,4 @@
 import { Client, Message } from "discord.js";
-import { delay } from "../utils/async";
 import { sequence } from "../utils/sequencer";
 import { handleQuestionResponse } from "./questions";
 import { deckDealer } from "./regular-interactions/decorative/deck-dealer";
@@ -12,8 +11,6 @@ import { questionTester } from "./regular-interactions/tests/question-tester";
 
 export async function handleMessage(client: Client, message: Message) {
     if (message.author.equals(client.user)) { return; }
-
-    await delay(400);
 
     await sequence([
 
