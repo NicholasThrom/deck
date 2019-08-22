@@ -4,6 +4,7 @@ import { handleQuestionResponse } from "./questions";
 import { deckDealer } from "./regular-interactions/decorative/deck-dealer";
 import { decker } from "./regular-interactions/decorative/decker";
 import { play } from "./regular-interactions/decorative/play";
+import { sentence } from "./regular-interactions/decorative/sentence-generator/sentence";
 import { thanker } from "./regular-interactions/decorative/thanker";
 import { battle } from "./regular-interactions/minigames/battle";
 import { quietGame } from "./regular-interactions/minigames/quiet-game";
@@ -24,6 +25,7 @@ export async function handleMessage(client: Client, message: Message) {
         play,
         thanker,
         decker,
+        sentence,
         battle,
         quietGame,
         questionTester,

@@ -1,11 +1,10 @@
 import { Message } from "discord.js";
 import { delay } from "../../../utils/async";
-import { randomElement, randomIn } from "../../../utils/random";
+import { chance, randomElement, randomIn } from "../../../utils/random";
 
 export function deckDealer(message: Message) {
-    // Intentionally floating,
-    // so that other responses don't need to wait so long.
-    // tslint:disable-next-line no-floating-promises
+    if (!chance(0.1)) { return; }
+
     delay(randomIn(10000, 10000000)).then(async () => {
         const responses = [
             "wanna buy a deck?",
