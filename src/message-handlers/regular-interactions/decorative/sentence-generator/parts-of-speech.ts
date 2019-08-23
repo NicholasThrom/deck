@@ -5,7 +5,7 @@ import { capitalizeFirstLetter } from "./util";
 const indefinite = indefiniteUntyped as unknown as (string: string) => string;
 
 export function randomSentence() {
-    return capitalizeFirstLetter(`${articledThing()} is ${descriptor()}!`);
+    return capitalizeFirstLetter(`${description()}!`);
 }
 
 function thing() {
@@ -43,6 +43,42 @@ function thing() {
         "chalk brush",
         "ruler",
         "classroom",
+    ]);
+}
+
+function things() {
+    return randomElement([
+        "dogs",
+        "cats",
+        "mice",
+        "slices of cheese",
+        "mountains",
+        "trees",
+        "ants",
+        "flies",
+        "pieces of paper",
+        "empty coffee cups",
+        "mouse traps",
+        "towers",
+        "desks",
+        "chairs",
+        "objects",
+        "cars",
+        "girls",
+        "boys",
+        "wheels",
+        "games",
+        "jokes",
+        "ditches",
+        "roads",
+        "words",
+        "books",
+        "bones",
+        "murderers",
+        "teachers",
+        "chalk brushes",
+        "rulers",
+        "classrooms",
     ]);
 }
 
@@ -96,6 +132,15 @@ function articledThing() {
     ])();
 }
 
+function articledThings() {
+    return weightedRandomElement([
+        [2, () => `the ${described(things)}`],
+        [2, () => `${described(things)}`],
+        [1, () => `these ${described(things)}`],
+        [1, () => `those ${described(things)}`],
+    ])();
+}
+
 function modifiedAdjective() {
     return `${adjectiveModifier()} ${adjective()}`;
 }
@@ -104,5 +149,12 @@ function descriptor() {
     return randomElement([
         adjective,
         modifiedAdjective,
+    ])();
+}
+
+function description() {
+    return randomElement([
+        () => `${articledThing()} is ${descriptor()}`,
+        () => `${articledThings()} are ${descriptor()}`,
     ])();
 }
