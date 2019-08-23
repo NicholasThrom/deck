@@ -5,7 +5,10 @@ import { capitalizeFirstLetter } from "./util";
 const indefinite = indefiniteUntyped as unknown as (string: string) => string;
 
 export function randomSentence() {
-    return capitalizeFirstLetter(`${description()}!`);
+    return capitalizeFirstLetter(`${randomElement([
+        description,
+        action,
+    ])()}.`);
 }
 
 function thing() {
@@ -105,7 +108,7 @@ function adjective() {
     ]);
 }
 
-function adjectiveModifier() {
+function adjectiveOrAdverbModifier() {
     return randomElement([
         "really",
         "very",
@@ -113,8 +116,69 @@ function adjectiveModifier() {
         "pretty",
         "extremely",
         "slightly",
+        "too",
     ]);
 }
+
+const verbs = {
+    subjectless: {
+        singular: {
+            anyTense() {
+                return randomElement([
+                    verbs.subjectless.singular.past,
+                    verbs.subjectless.singular.present,
+                    verbs.subjectless.singular.future,
+                ])();
+            },
+            present() {
+                return randomElement([
+                    "runs",
+                    "dies",
+                    "falls",
+                    "lies",
+                    "speaks",
+                    "thinks",
+                    "talks",
+                    "beeps",
+                    "sings",
+                    "writes",
+                ]);
+            },
+            past() {
+                return randomElement([
+                    "ran",
+                    "died",
+                    "fell",
+                    "lied",
+                    "spoke",
+                    "thought",
+                    "talked",
+                    "beeped",
+                    "sang",
+                    "wrote",
+                ]);
+            },
+            future() {
+                const modifier = weightedRandomElement([
+                    [3, "will"],
+                    [1, "shall"],
+                ]);
+                return randomElement([
+                    `${modifier} run`,
+                    `${modifier} die`,
+                    `${modifier} fall`,
+                    `${modifier} lie`,
+                    `${modifier} speak`,
+                    `${modifier} think`,
+                    `${modifier} talk`,
+                    `${modifier} beep`,
+                    `${modifier} sing`,
+                    `${modifier} write`,
+                ]);
+            },
+        },
+    },
+};
 
 function described(thing: () => string): string {
     return weightedRandomElement([
@@ -142,7 +206,7 @@ function articledThings() {
 }
 
 function modifiedAdjective() {
-    return `${adjectiveModifier()} ${adjective()}`;
+    return `${adjectiveOrAdverbModifier()} ${adjective()}`;
 }
 
 function descriptor() {
@@ -156,5 +220,11 @@ function description() {
     return randomElement([
         () => `${articledThing()} is ${descriptor()}`,
         () => `${articledThings()} are ${descriptor()}`,
+    ])();
+}
+
+function action() {
+    return randomElement([
+        () => `${articledThing()} ${verbs.subjectless.singular.anyTense()}`,
     ])();
 }
