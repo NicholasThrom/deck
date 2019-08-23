@@ -1,11 +1,14 @@
-import { randomElement } from "../../../../utils/random";
+import * as indefiniteUntyped from "indefinite";
+import { randomElement, weightedRandomElement } from "../../../../utils/random";
 import { capitalizeFirstLetter } from "./util";
 
+const indefinite = indefiniteUntyped as unknown as (string: string) => string;
+
 export function randomSentence() {
-    return capitalizeFirstLetter(`The ${singularThing()} is ${descriptor()}!`);
+    return capitalizeFirstLetter(`${articledThing()} is ${descriptor()}!`);
 }
 
-function singularThing() {
+function thing() {
     return randomElement([
         "dog",
         "cat",
@@ -75,6 +78,22 @@ function adjectiveModifier() {
         "extremely",
         "slightly",
     ]);
+}
+
+function described(thing: () => string): string {
+    return weightedRandomElement([
+        [2, thing],
+        [1, () => `${descriptor()} ${described(thing)}`],
+    ])();
+}
+
+function articledThing() {
+    return weightedRandomElement([
+        [2, () => `the ${described(thing)}`],
+        [2, () => `${indefinite(described(thing))}`],
+        [1, () => `this ${described(thing)}`],
+        [1, () => `that ${described(thing)}`],
+    ])();
 }
 
 function modifiedAdjective() {
