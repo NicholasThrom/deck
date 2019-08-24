@@ -248,7 +248,7 @@ const verbs = {
                     "hits",
                     "talks to",
                     "considers",
-                    "speaks with",
+                    "speak with",
                     "kills",
                     "eats",
                     "licks",
