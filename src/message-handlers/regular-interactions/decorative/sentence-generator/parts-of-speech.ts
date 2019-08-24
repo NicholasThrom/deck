@@ -238,9 +238,9 @@ const verbs = {
         singular: {
             anyTense() {
                 return randomElement([
-                    verbs.subjectless.singular.past,
-                    verbs.subjectless.singular.present,
-                    verbs.subjectless.singular.future,
+                    verbs.subjected.singular.past,
+                    verbs.subjected.singular.present,
+                    verbs.subjected.singular.future,
                 ])();
             },
             present() {
@@ -292,9 +292,9 @@ const verbs = {
         plural: {
             anyTense() {
                 return randomElement([
-                    verbs.subjectless.singular.past,
-                    verbs.subjectless.singular.present,
-                    verbs.subjectless.singular.future,
+                    verbs.subjected.singular.past,
+                    verbs.subjected.singular.present,
+                    verbs.subjected.singular.future,
                 ])();
             },
             present() {
