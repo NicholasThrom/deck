@@ -1,5 +1,6 @@
 import * as indefiniteUntyped from "indefinite";
 import { randomElement, weightedRandomElement } from "../../../../utils/random";
+import { nouns } from "./parts-of-speech/nouns";
 import { capitalizeFirstLetter } from "./util";
 
 const indefinite = indefiniteUntyped as unknown as (string: string) => string;
@@ -10,80 +11,6 @@ export function randomSentence() {
         subjectlessAction,
         subjectedAction,
     ])()}.`);
-}
-
-function thing() {
-    return randomElement([
-        "dog",
-        "cat",
-        "mouse",
-        "slice of cheese",
-        "mountain",
-        "tree",
-        "ant",
-        "fly",
-        "piece of paper",
-        "empty coffee cup",
-        "mouse trap",
-        "pepperoni",
-        "tower",
-        "desk",
-        "chair",
-        "object",
-        "car",
-        "girl",
-        "boy",
-        "wheel",
-        "game",
-        "joke",
-        "ditch",
-        "road",
-        "word",
-        "book",
-        "hair",
-        "bone",
-        "murderer",
-        "teacher",
-        "chalk brush",
-        "ruler",
-        "classroom",
-    ]);
-}
-
-function things() {
-    return randomElement([
-        "dogs",
-        "cats",
-        "mice",
-        "slices of cheese",
-        "mountains",
-        "trees",
-        "ants",
-        "flies",
-        "pieces of paper",
-        "empty coffee cups",
-        "mouse traps",
-        "towers",
-        "desks",
-        "chairs",
-        "objects",
-        "cars",
-        "girls",
-        "boys",
-        "wheels",
-        "games",
-        "jokes",
-        "ditches",
-        "roads",
-        "words",
-        "books",
-        "bones",
-        "murderers",
-        "teachers",
-        "chalk brushes",
-        "rulers",
-        "classrooms",
-    ]);
 }
 
 function adjective() {
@@ -292,9 +219,9 @@ const verbs = {
         plural: {
             anyTense() {
                 return randomElement([
-                    verbs.subjected.singular.past,
-                    verbs.subjected.singular.present,
-                    verbs.subjected.singular.future,
+                    verbs.subjected.plural.past,
+                    verbs.subjected.plural.present,
+                    verbs.subjected.plural.future,
                 ])();
             },
             present() {
@@ -355,19 +282,19 @@ function described(thing: () => string): string {
 
 function articledThing() {
     return weightedRandomElement([
-        [2, () => `the ${described(thing)}`],
-        [2, () => `${indefinite(described(thing))}`],
-        [1, () => `this ${described(thing)}`],
-        [1, () => `that ${described(thing)}`],
+        [2, () => `the ${described(() => nouns().singular)}`],
+        [2, () => `${indefinite(described(() => nouns().singular))}`],
+        [1, () => `this ${described(() => nouns().singular)}`],
+        [1, () => `that ${described(() => nouns().singular)}`],
     ])();
 }
 
 function articledThings() {
     return weightedRandomElement([
-        [2, () => `the ${described(things)}`],
-        [2, () => `${described(things)}`],
-        [1, () => `these ${described(things)}`],
-        [1, () => `those ${described(things)}`],
+        [2, () => `the ${described(() => nouns().plural)}`],
+        [2, () => `${described(() => nouns().plural)}`],
+        [1, () => `these ${described(() => nouns().plural)}`],
+        [1, () => `those ${described(() => nouns().plural)}`],
     ])();
 }
 
