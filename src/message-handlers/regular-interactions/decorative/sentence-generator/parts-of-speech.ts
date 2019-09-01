@@ -1,6 +1,6 @@
 import * as indefiniteUntyped from "indefinite";
 import { randomElement, weightedRandomElement } from "../../../../utils/random";
-import { nouns } from "./parts-of-speech/nouns";
+import { pluralNoun, singularNoun } from "./parts-of-speech/nouns";
 import { capitalizeFirstLetter } from "./util";
 
 const indefinite = indefiniteUntyped as unknown as (string: string) => string;
@@ -282,19 +282,19 @@ function described(thing: () => string): string {
 
 function articledThing() {
     return weightedRandomElement([
-        [2, () => `the ${described(() => nouns().singular)}`],
-        [2, () => `${indefinite(described(() => nouns().singular))}`],
-        [1, () => `this ${described(() => nouns().singular)}`],
-        [1, () => `that ${described(() => nouns().singular)}`],
+        [2, () => `the ${described(singularNoun)}`],
+        [2, () => `${indefinite(described(singularNoun))}`],
+        [1, () => `this ${described(singularNoun)}`],
+        [1, () => `that ${described(singularNoun)}`],
     ])();
 }
 
 function articledThings() {
     return weightedRandomElement([
-        [2, () => `the ${described(() => nouns().plural)}`],
-        [2, () => `${described(() => nouns().plural)}`],
-        [1, () => `these ${described(() => nouns().plural)}`],
-        [1, () => `those ${described(() => nouns().plural)}`],
+        [2, () => `the ${described(pluralNoun)}`],
+        [2, () => `${described(pluralNoun)}`],
+        [1, () => `these ${described(pluralNoun)}`],
+        [1, () => `those ${described(pluralNoun)}`],
     ])();
 }
 
