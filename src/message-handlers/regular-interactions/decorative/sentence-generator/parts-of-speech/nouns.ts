@@ -2,6 +2,7 @@ import { randomElement } from "../../../../../utils/random";
 
 const nouns = [
     { singular: "ant", plural: "ants" },
+    { singular: "bologna", plural: "bolognas" },
     { singular: "bin", plural: "bins" },
     { singular: "bone", plural: "bones" },
     { singular: "book", plural: "books" },
@@ -26,6 +27,7 @@ const nouns = [
     { singular: "girl", plural: "girls" },
     { singular: "hair", plural: "hairs" },
     { singular: "joke", plural: "jokes" },
+    { singular: "lemon", plural: "lemons" },
     { singular: "mountain", plural: "mountains" },
     { singular: "mouse", plural: "mice" },
     { singular: "mouse trap", plural: "mouse traps" },
@@ -43,6 +45,7 @@ const nouns = [
     { singular: "sadness" },
     { singular: "slice of cheese", plural: "slices of cheese" },
     { singular: "teacher", plural: "teachers" },
+    { singular: "toaster", plural: "toasters" },
     { singular: "tower", plural: "towers" },
     { singular: "tree", plural: "trees" },
     { singular: "wheel", plural: "wheels" },
