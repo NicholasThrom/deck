@@ -1,6 +1,12 @@
 import * as indefiniteUntyped from "indefinite";
 import { randomElement, weightedRandomElement } from "../../../../utils/random";
 import { pluralNoun, singularNoun } from "./parts-of-speech/nouns";
+import {
+    pluralIntransitiveVerbAnyTense,
+    pluralTransitiveVerbAnyTense,
+    singularIntransitiveVerbAnyTense,
+    singularTransitiveVerbAnyTense,
+} from "./parts-of-speech/verbs";
 import { capitalizeFirstLetter } from "./util";
 
 const indefinite = indefiniteUntyped as unknown as (string: string) => string;
@@ -8,8 +14,8 @@ const indefinite = indefiniteUntyped as unknown as (string: string) => string;
 export function randomSentence() {
     return capitalizeFirstLetter(`${randomElement([
         description,
-        subjectlessAction,
-        subjectedAction,
+        transitiveAction,
+        intransitiveAction,
     ])()}.`);
 }
 
@@ -316,16 +322,16 @@ function description() {
     ])();
 }
 
-function subjectlessAction() {
+function intransitiveAction() {
     return randomElement([
-        () => `${articledThing()} ${verbs.subjectless.singular.anyTense()}`,
-        () => `${articledThings()} ${verbs.subjectless.plural.anyTense()}`,
+        () => `${articledThing()} ${singularIntransitiveVerbAnyTense()}`,
+        () => `${articledThings()} ${pluralIntransitiveVerbAnyTense()}`,
     ])();
 }
 
-function subjectedAction() {
+function transitiveAction() {
     return randomElement([
-        () => `${articledThing()} ${verbs.subjected.singular.anyTense()} ${randomElement([articledThings, articledThing])()}`,
-        () => `${articledThings()} ${verbs.subjected.plural.anyTense()} ${randomElement([articledThings, articledThing])()}`,
+        () => `${articledThing()} ${singularTransitiveVerbAnyTense()} ${randomElement([articledThings, articledThing])()}`,
+        () => `${articledThings()} ${pluralTransitiveVerbAnyTense()} ${randomElement([articledThings, articledThing])()}`,
     ])();
 }
