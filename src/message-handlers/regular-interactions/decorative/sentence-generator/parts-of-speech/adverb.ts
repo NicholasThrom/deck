@@ -136,7 +136,6 @@ const adverbs = [
     "lightly",
     "likely",
     "limply",
-    "lively",
     "loftily",
     "longingly",
     "loosely",
