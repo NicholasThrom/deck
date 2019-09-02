@@ -6,36 +6,44 @@ interface Verb {
     singular?: string;
     regular?: string;
     past?: string;
+    participle?: string;
     gerund?: string;
 }
 
 const transitiveVerbs: Verb[] = [
-    {
-        singular: "smacks",
-        regular: "smack",
-        past: "smacked",
-        gerund: "smacking",
-    },
+    { singular: "converses with", regular: "converse with", past: "conversed with", gerund: "conversing with" },
+    { singular: "considers", regular: "consider", past: "considered", gerund: "considering" },
+    { singular: "eats", regular: "eat", past: "ate", gerund: "eatings" },
+    { singular: "kills", regular: "kill", past: "killed", gerund: "killing" },
+    { singular: "licks", regular: "lick", past: "licked", gerund: "licking" },
+    { singular: "likes", regular: "like", past: "liked", gerund: "liking" },
+    { singular: "loves", regular: "love", past: "loved", gerund: "loving" },
+    { singular: "hits", regular: "hit", past: "hit", gerund: "hitting" },
+    { singular: "smacks", regular: "smack", past: "smacked", gerund: "smacking" },
+    { singular: "speaks with", regular: "speak with", past: "spoke with", gerund: "speaking with" },
+    { singular: "talks to", regular: "talk to", past: "talked to", gerund: "talking to" },
 ];
 
 const intransitiveVerbs: Verb[] = [
-    {
-        singular: "thinks",
-        regular: "think",
-        past: "thought",
-        gerund: "thinking",
-    },
+    { singular: "beeps", regular: "beep", past: "beeped", gerund: "beeping" },
+    { singular: "dies", regular: "die", past: "died", gerund: "dying" },
+    { singular: "falls", regular: "fall", past: "fell", gerund: "falling" },
+    { singular: "lies", regular: "lie", past: "lied", gerund: "lying" },
+    { singular: "runs", regular: "run", past: "ran", gerund: "running" },
+    { singular: "sings", regular: "sing", past: "sang", participle: "sung", gerund: "sung" },
+    { singular: "speaks", regular: "speak", past: "spoke", gerund: "speaking" },
+    { singular: "talks", regular: "talk", past: "talked", gerund: "talking" },
+    { singular: "thinks", regular: "think", past: "thought", gerund: "thinking" },
+    { singular: "writes", regular: "write", past: "wrote", gerund: "writing" },
 ];
 
 function filterVerbs(
     verbs: Verb[],
     selector: (verb: Verb) => string | undefined,
-    transformer: (string: string) => string = (s) => s,
 ): string[] {
     return verbs
         .map(selector)
-        .filter((verb): verb is string => verb !== undefined)
-        .map(transformer);
+        .filter((verb): verb is string => verb !== undefined);
 }
 
 const singularTransitiveVerbs = filterVerbs(transitiveVerbs, (verb) => verb.singular);
