@@ -29,6 +29,7 @@ const intransitiveVerbs: Verb[] = [
     { singular: "beeps", regular: "beep", past: "beeped", gerund: "beeping" },
     { singular: "dies", regular: "die", past: "died", gerund: "dying" },
     { singular: "falls", regular: "fall", past: "fell", gerund: "falling" },
+    { singular: "kills", regular: "kill", past: "killed", gerund: "killing" },
     { singular: "knows", regular: "know", past: "knew", participle: "known", gerund: "knowing" },
     { singular: "lies", regular: "lie", past: "lied", gerund: "lying" },
     { singular: "runs", regular: "run", past: "ran", gerund: "running" },
@@ -169,6 +170,10 @@ function verbAnyTense(verbCollection: VerbCollection, plurality: Plurality, modi
     ])(verbCollection, plurality, modifier);
 }
 
+function imperative(verbCollection: VerbCollection, modifier: string | undefined) {
+    return `${spaceModifier(modifier, false)}${randomElement(verbCollection.regular)}`;
+}
+
 export function transitiveSingularVerbAnyTense(modifier: string | undefined) {
     return verbAnyTense(transitive, "singular", modifier);
 }
@@ -177,10 +182,18 @@ export function transitivePluralVerbAnyTense(modifier: string | undefined) {
     return verbAnyTense(transitive, "plural", modifier);
 }
 
+export function transitiveVerbImperative(modifier: string | undefined) {
+    return imperative(transitive, modifier);
+}
+
 export function intransitiveSingularVerbAnyTense(modifier: string | undefined) {
     return verbAnyTense(intransitive, "singular", modifier);
 }
 
 export function intransitivePluralVerbAnyTense(modifier: string | undefined) {
     return verbAnyTense(intransitive, "plural", modifier);
+}
+
+export function intransitiveVerbImperative(modifier: string | undefined) {
+    return imperative(intransitive, modifier);
 }

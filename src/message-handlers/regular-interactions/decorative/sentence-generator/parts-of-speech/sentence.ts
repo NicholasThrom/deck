@@ -1,11 +1,13 @@
 import { weightedRandomElement } from "../../../../../utils/random";
-import { independentClause } from "./independent-clause";
+import { mainClause } from "./independent-clause";
 import { subordinateClause } from "./subordinate-clause";
 
-export function sentence() {
+export function sentence(): string {
     return weightedRandomElement([
-        [8, independentClause],
-        [2, () => `${independentClause()} ${subordinateClause()}`],
-        [1, () => `${subordinateClause()}, ${independentClause()}`],
+        [32, mainClause],
+        [8, () => `${mainClause()} ${subordinateClause()}`],
+        [4, () => `${subordinateClause()}, ${mainClause()}`],
+        [2, () => `${sentence()} ${subordinateClause()}`],
+        [1, () => `${subordinateClause()}, ${sentence()}`],
     ])();
 }

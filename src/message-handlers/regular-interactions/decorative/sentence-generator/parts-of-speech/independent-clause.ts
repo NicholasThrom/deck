@@ -5,8 +5,10 @@ import { articledThing, articledThings } from "./articles";
 import {
     intransitivePluralVerbAnyTense,
     intransitiveSingularVerbAnyTense,
+    intransitiveVerbImperative,
     transitivePluralVerbAnyTense,
     transitiveSingularVerbAnyTense,
+    transitiveVerbImperative,
 } from "./verbs";
 
 function description() {
@@ -16,24 +18,48 @@ function description() {
     ])();
 }
 
-function intransitiveAction() {
+function metaphor() {
     return randomElement([
-        () => `${articledThing()} ${intransitiveSingularVerbAnyTense(verbDescriptor())}`,
-        () => `${articledThings()} ${intransitivePluralVerbAnyTense(verbDescriptor())}`,
+        () => `${articledThing()} is ${articledThing()}`,
+        () => `${articledThings()} are ${articledThings()}`,
     ])();
 }
 
-function transitiveAction() {
+function simile() {
     return randomElement([
+        () => `${articledThing()} is like ${articledThing()}`,
+        () => `${articledThings()} are like ${articledThings()}`,
+    ])();
+}
+
+function action() {
+    return randomElement([
+        () => `${articledThing()} ${intransitiveSingularVerbAnyTense(verbDescriptor())}`,
+        () => `${articledThings()} ${intransitivePluralVerbAnyTense(verbDescriptor())}`,
         () => `${articledThing()} ${transitiveSingularVerbAnyTense(verbDescriptor())} ${randomElement([articledThings, articledThing])()}`,
         () => `${articledThings()} ${transitivePluralVerbAnyTense(verbDescriptor())} ${randomElement([articledThings, articledThing])()}`,
+    ])();
+}
+
+function command() {
+    return randomElement([
+        () => `${intransitiveVerbImperative(verbDescriptor())}`,
+        () => `${transitiveVerbImperative(verbDescriptor())} ${randomElement([articledThings, articledThing])()}`,
     ])();
 }
 
 export function independentClause() {
     return weightedRandomElement([
         [4, description],
-        [4, transitiveAction],
-        [4, intransitiveAction],
+        [2, metaphor],
+        [4, simile],
+        [8, action],
+    ])();
+}
+
+export function mainClause() {
+    return weightedRandomElement([
+        [18, independentClause],
+        [4, command],
     ])();
 }
