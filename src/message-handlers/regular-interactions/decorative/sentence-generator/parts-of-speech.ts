@@ -2,10 +2,10 @@ import * as indefiniteUntyped from "indefinite";
 import { randomElement, weightedRandomElement } from "../../../../utils/random";
 import { pluralNoun, singularNoun } from "./parts-of-speech/nouns";
 import {
-    pluralIntransitiveVerbAnyTense,
-    pluralTransitiveVerbAnyTense,
-    singularIntransitiveVerbAnyTense,
-    singularTransitiveVerbAnyTense,
+    intransitivePluralVerbAnyTense,
+    intransitiveSingularVerbAnyTense,
+    transitivePluralVerbAnyTense,
+    transitiveSingularVerbAnyTense,
 } from "./parts-of-speech/verbs";
 import { capitalizeFirstLetter } from "./util";
 
@@ -99,14 +99,14 @@ function description() {
 
 function intransitiveAction() {
     return randomElement([
-        () => `${articledThing()} ${singularIntransitiveVerbAnyTense()}`,
-        () => `${articledThings()} ${pluralIntransitiveVerbAnyTense()}`,
+        () => `${articledThing()} ${intransitiveSingularVerbAnyTense()}`,
+        () => `${articledThings()} ${intransitivePluralVerbAnyTense()}`,
     ])();
 }
 
 function transitiveAction() {
     return randomElement([
-        () => `${articledThing()} ${singularTransitiveVerbAnyTense()} ${randomElement([articledThings, articledThing])()}`,
-        () => `${articledThings()} ${pluralTransitiveVerbAnyTense()} ${randomElement([articledThings, articledThing])()}`,
+        () => `${articledThing()} ${transitiveSingularVerbAnyTense()} ${randomElement([articledThings, articledThing])()}`,
+        () => `${articledThings()} ${transitivePluralVerbAnyTense()} ${randomElement([articledThings, articledThing])()}`,
     ])();
 }

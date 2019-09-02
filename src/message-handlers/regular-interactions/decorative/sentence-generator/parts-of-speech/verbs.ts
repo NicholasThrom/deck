@@ -13,7 +13,8 @@ interface Verb {
 const transitiveVerbs: Verb[] = [
     { singular: "converses with", regular: "converse with", past: "conversed with", gerund: "conversing with" },
     { singular: "considers", regular: "consider", past: "considered", gerund: "considering" },
-    { singular: "eats", regular: "eat", past: "ate", gerund: "eatings" },
+    { singular: "eats", regular: "eat", past: "ate", gerund: "eating" },
+    { singular: "has", regular: "have", past: "had", gerund: "having" },
     { singular: "kills", regular: "kill", past: "killed", gerund: "killing" },
     { singular: "licks", regular: "lick", past: "licked", gerund: "licking" },
     { singular: "likes", regular: "like", past: "liked", gerund: "liking" },
@@ -28,9 +29,10 @@ const intransitiveVerbs: Verb[] = [
     { singular: "beeps", regular: "beep", past: "beeped", gerund: "beeping" },
     { singular: "dies", regular: "die", past: "died", gerund: "dying" },
     { singular: "falls", regular: "fall", past: "fell", gerund: "falling" },
+    { singular: "knows", regular: "know", past: "knew", gerund: "knowing" },
     { singular: "lies", regular: "lie", past: "lied", gerund: "lying" },
     { singular: "runs", regular: "run", past: "ran", gerund: "running" },
-    { singular: "sings", regular: "sing", past: "sang", participle: "sung", gerund: "sung" },
+    { singular: "sings", regular: "sing", past: "sang", participle: "sung", gerund: "singing" },
     { singular: "speaks", regular: "speak", past: "spoke", gerund: "speaking" },
     { singular: "talks", regular: "talk", past: "talked", gerund: "talking" },
     { singular: "thinks", regular: "think", past: "thought", gerund: "thinking" },
@@ -46,86 +48,132 @@ function filterVerbs(
         .filter((verb): verb is string => verb !== undefined);
 }
 
-const singularTransitiveVerbs = filterVerbs(transitiveVerbs, (verb) => verb.singular);
-const regularTransitiveVerbs = filterVerbs(transitiveVerbs, (verb) => verb.regular);
-const pastTransitiveVerbs = filterVerbs(transitiveVerbs, (verb) => verb.past);
-
-const singularIntransitiveVerbs = filterVerbs(intransitiveVerbs, (verb) => verb.singular);
-const regularIntransitiveVerbs = filterVerbs(intransitiveVerbs, (verb) => verb.regular);
-const pastIntransitiveVerbs = filterVerbs(intransitiveVerbs, (verb) => verb.past);
-
-// Intransitive generators
-
-export function singularTransitiveVerb() {
-    return randomElement(singularTransitiveVerbs);
+interface VerbCollection {
+    singular: string[];
+    regular: string[];
+    past: string[];
+    participle: string[];
+    gerund: string[];
 }
 
-export function transitiveVerb() {
-    return randomElement(regularTransitiveVerbs);
+type Plurality = "singular" | "plural";
+
+function separateVerbs(verbs: Verb[]): VerbCollection {
+    return {
+        singular: filterVerbs(verbs, (verb) => verb.singular),
+        regular: filterVerbs(verbs, (verb) => verb.regular),
+        past: filterVerbs(verbs, (verb) => verb.past),
+        participle: filterVerbs(verbs, (verb) => verb.participle || verb.past),
+        gerund: filterVerbs(verbs, (verb) => verb.gerund),
+    };
 }
 
-export function pastTransitiveVerb() {
-    return randomElement(pastTransitiveVerbs);
+const transitive = separateVerbs(transitiveVerbs);
+const intransitive = separateVerbs(intransitiveVerbs);
+
+// General generators
+
+function futurePrefix() {
+    return weightedRandomElement([[4, "will"], [1, "shall"]]);
 }
 
-export function futureTransitiveVerb() {
-    const prefix = weightedRandomElement([
-        [4, "will"],
-        [1, "shall"],
-    ]);
-    return `${prefix} ${transitiveVerb()}`;
+// Transitive generators
+
+function presentVerb(verbCollection: VerbCollection, plurality: Plurality) {
+    switch (plurality) {
+        case "singular": return randomElement(verbCollection.singular);
+        case "plural": return randomElement(verbCollection.regular);
+    }
 }
 
-export function singularTransitiveVerbAnyTense() {
-    return randomElement([
-        singularTransitiveVerb,
-        pastTransitiveVerb,
-        futureTransitiveVerb,
-    ])();
+function preteriteVerb(verbCollection: VerbCollection, plurality: Plurality) {
+    return randomElement(verbCollection.past);
 }
 
-export function pluralTransitiveVerbAnyTense() {
-    return randomElement([
-        transitiveVerb,
-        pastTransitiveVerb,
-        futureTransitiveVerb,
-    ])();
+function presentContinuousVerb(verbCollection: VerbCollection, plurality: Plurality) {
+    switch (plurality) {
+        case "singular": return `is ${randomElement(verbCollection.gerund)}`;
+        case "plural": return `are ${randomElement(verbCollection.gerund)}`;
+    }
 }
 
-// Transitive Generators
-
-export function singularIntransitiveVerb() {
-    return randomElement(singularIntransitiveVerbs);
+function presentPerfectVerb(verbCollection: VerbCollection, plurality: Plurality) {
+    switch (plurality) {
+        case "singular": return `has ${randomElement(verbCollection.participle)}`;
+        case "plural": return `have ${randomElement(verbCollection.participle)}`;
+    }
 }
 
-export function intransitiveVerb() {
-    return randomElement(regularIntransitiveVerbs);
+function futureVerb(verbCollection: VerbCollection, plurality: Plurality) {
+    const prefix = futurePrefix();
+    return `${prefix} ${randomElement(verbCollection.regular)}`;
 }
 
-export function pastIntransitiveVerb() {
-    return randomElement(pastIntransitiveVerbs);
+function futurePerfectVerb(verbCollection: VerbCollection, plurality: Plurality) {
+    const prefix = futurePrefix();
+    return `${prefix} ${randomElement(verbCollection.regular)}`;
 }
 
-export function futureIntransitiveVerb() {
-    const prefix = weightedRandomElement([
-        [4, "will"],
-        [1, "shall"],
-    ]);
-    return `${prefix} ${intransitiveVerb()}`;
+function pastContinuous(verbCollection: VerbCollection, plurality: Plurality) {
+    switch (plurality) {
+        case "singular": return `was ${randomElement(verbCollection.gerund)}`;
+        case "plural": return `were ${randomElement(verbCollection.gerund)}`;
+    }
 }
 
-export function singularIntransitiveVerbAnyTense() {
-    return randomElement([
-        singularIntransitiveVerb,
-        pastIntransitiveVerb,
-        futureIntransitiveVerb,
-    ])();
+function pastPerfect(verbCollection: VerbCollection, plurality: Plurality) {
+    return `had ${randomElement(verbCollection.participle)}`;
 }
 
-export function pluralIntransitiveVerbAnyTense() {
-    return randomElement([
-        intransitiveVerb,
-        pastIntransitiveVerb,
-        futureIntransitiveVerb,
-    ])();
+function futureContinuous(verbCollection: VerbCollection, plurality: Plurality) {
+    return `will be ${randomElement(verbCollection.participle)}`;
+}
+
+function presentPerfectContinuous(verbCollection: VerbCollection, plurality: Plurality) {
+    switch (plurality) {
+        case "singular": return `has been ${randomElement(verbCollection.gerund)}`;
+        case "plural": return `have been ${randomElement(verbCollection.gerund)}`;
+    }
+    return `has been ${randomElement(verbCollection.gerund)}`;
+}
+
+function pastPerfectContinuous(verbCollection: VerbCollection, plurality: Plurality) {
+    return `had been ${randomElement(verbCollection.gerund)}`;
+}
+
+function futurePerfectContinuous(verbCollection: VerbCollection, plurality: Plurality) {
+    return `will have been ${randomElement(verbCollection.gerund)}`;
+}
+
+function verbAnyTense(verbCollection: VerbCollection, plurality: Plurality) {
+    return weightedRandomElement([
+        [16, presentVerb],
+        [8, preteriteVerb],
+        [2, presentContinuousVerb],
+        [2, presentPerfectVerb],
+        [8, futureVerb],
+        [1, futurePerfectVerb],
+        [2, pastContinuous],
+        [2, pastPerfect],
+        [1, futureContinuous],
+        [1, presentPerfectContinuous],
+        [1, pastPerfectContinuous],
+        [1, futurePerfectContinuous],
+    ])(verbCollection, plurality);
+}
+
+export function transitiveSingularVerbAnyTense() {
+    return verbAnyTense(transitive, "singular");
+}
+
+export function transitivePluralVerbAnyTense() {
+    return verbAnyTense(transitive, "plural");
+}
+
+export function intransitiveSingularVerbAnyTense() {
+    return verbAnyTense(intransitive, "singular");
+}
+
+export function intransitivePluralVerbAnyTense() {
+    return verbAnyTense(intransitive, "plural");
 }
