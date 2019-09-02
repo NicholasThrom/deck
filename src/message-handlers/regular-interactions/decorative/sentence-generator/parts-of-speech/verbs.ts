@@ -11,15 +11,15 @@ interface Verb {
 }
 
 const transitiveVerbs: Verb[] = [
-    { singular: "converses with", regular: "converse with", past: "conversed with", gerund: "conversing with" },
     { singular: "considers", regular: "consider", past: "considered", gerund: "considering" },
+    { singular: "converses with", regular: "converse with", past: "conversed with", gerund: "conversing with" },
     { singular: "eats", regular: "eat", past: "ate", gerund: "eating" },
     { singular: "has", regular: "have", past: "had", gerund: "having" },
+    { singular: "hits", regular: "hit", past: "hit", gerund: "hitting" },
     { singular: "kills", regular: "kill", past: "killed", gerund: "killing" },
     { singular: "licks", regular: "lick", past: "licked", gerund: "licking" },
     { singular: "likes", regular: "like", past: "liked", gerund: "liking" },
     { singular: "loves", regular: "love", past: "loved", gerund: "loving" },
-    { singular: "hits", regular: "hit", past: "hit", gerund: "hitting" },
     { singular: "smacks", regular: "smack", past: "smacked", gerund: "smacking" },
     { singular: "speaks with", regular: "speak with", past: "spoke with", gerund: "speaking with" },
     { singular: "talks to", regular: "talk to", past: "talked to", gerund: "talking to" },
