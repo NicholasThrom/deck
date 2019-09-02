@@ -19,8 +19,8 @@ const transitiveVerbs: Verb[] = [
     { singular: "asks", regular: "ask", past: "asked", gerund: "asking" },
     { singular: "bakes", regular: "bake", past: "baked", gerund: "baking" },
     { singular: "brings", regular: "bring", past: "brought", gerund: "bringing" },
-    { singular: "buys", regular: "buy", past: "bought", gerund: "buying" },
     { singular: "burns", regular: "burn", past: "burned", gerund: "burning" },
+    { singular: "buys", regular: "buy", past: "bought", gerund: "buying" },
     { singular: "chops", regular: "chop", past: "chopped", gerund: "chopping" },
     { singular: "considers", regular: "consider", past: "considered", gerund: "considering" },
     { singular: "converses with", regular: "converse with", past: "conversed with", gerund: "conversing with" },
@@ -43,9 +43,9 @@ const transitiveVerbs: Verb[] = [
     { singular: "sees", regular: "see", past: "saw", participle: "seen", gerund: "seeing" },
     { singular: "smacks", regular: "smack", past: "smacked", gerund: "smacking" },
     { singular: "speaks with", regular: "speak with", past: "spoke with", gerund: "speaking with" },
+    { singular: "tackles", regular: "tackle", past: "tackled", gerund: "tackling" },
     { singular: "talks to", regular: "talk to", past: "talked to", gerund: "talking to" },
     { singular: "tickles", regular: "tickle", past: "tickled", gerund: "tickling" },
-    { singular: "tackles", regular: "tackle", past: "tackled", gerund: "tackling" },
 ];
 
 const intransitiveVerbs: Verb[] = [
@@ -57,10 +57,10 @@ const intransitiveVerbs: Verb[] = [
     { singular: "coughs", regular: "cough", past: "coughed", gerund: "coughing" },
     { singular: "dances", regular: "dance", past: "danced", gerund: "dancing" },
     { singular: "dies", regular: "die", past: "died", gerund: "dying" },
-    { singular: "falls", regular: "fall", past: "fell", gerund: "falling" },
     { singular: "fails", regular: "fail", past: "failed", gerund: "failing" },
-    { singular: "goes", regular: "go", past: "went", gerund: "going" },
+    { singular: "falls", regular: "fall", past: "fell", gerund: "falling" },
     { singular: "goes away", regular: "go away", past: "went away", gerund: "going away" },
+    { singular: "goes", regular: "go", past: "went", gerund: "going" },
     { singular: "kills", regular: "kill", past: "killed", gerund: "killing" },
     { singular: "knows", regular: "know", past: "knew", participle: "known", gerund: "knowing" },
     { singular: "leaps", regular: "leap", past: "leapt", gerund: "leaping" },
