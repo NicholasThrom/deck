@@ -1,6 +1,8 @@
 import * as indefiniteUntyped from "indefinite";
 import { randomElement, weightedRandomElement } from "../../../../utils/random";
 import { adjective } from "./parts-of-speech/adjective";
+import { adverb } from "./parts-of-speech/adverb";
+import { adjectiveOrAdverbModifier } from "./parts-of-speech/modifier";
 import { pluralNoun, singularNoun } from "./parts-of-speech/nouns";
 import {
     intransitivePluralVerbAnyTense,
@@ -9,7 +11,6 @@ import {
     transitiveSingularVerbAnyTense,
 } from "./parts-of-speech/verbs";
 import { capitalizeFirstLetter } from "./util";
-import { adjectiveOrAdverbModifier } from "./parts-of-speech/modifier";
 
 const indefinite = indefiniteUntyped as unknown as (string: string) => string;
 
@@ -21,28 +22,28 @@ export function randomSentence() {
     ])()}.`);
 }
 
-function described(thing: () => string): string {
+function describedThing(thing: () => string): string {
     return weightedRandomElement([
         [2, thing],
-        [1, () => `${descriptor()} ${described(thing)}`],
+        [1, () => `${thingDescriptor()} ${describedThing(thing)}`],
     ])();
 }
 
 function articledThing() {
     return weightedRandomElement([
-        [2, () => `the ${described(singularNoun)}`],
-        [2, () => `${indefinite(described(singularNoun))}`],
-        [1, () => `this ${described(singularNoun)}`],
-        [1, () => `that ${described(singularNoun)}`],
+        [2, () => `the ${describedThing(singularNoun)}`],
+        [2, () => `${indefinite(describedThing(singularNoun))}`],
+        [1, () => `this ${describedThing(singularNoun)}`],
+        [1, () => `that ${describedThing(singularNoun)}`],
     ])();
 }
 
 function articledThings() {
     return weightedRandomElement([
-        [2, () => `the ${described(pluralNoun)}`],
-        [2, () => `${described(pluralNoun)}`],
-        [1, () => `these ${described(pluralNoun)}`],
-        [1, () => `those ${described(pluralNoun)}`],
+        [2, () => `the ${describedThing(pluralNoun)}`],
+        [2, () => `${describedThing(pluralNoun)}`],
+        [1, () => `these ${describedThing(pluralNoun)}`],
+        [1, () => `those ${describedThing(pluralNoun)}`],
     ])();
 }
 
@@ -50,30 +51,50 @@ function modifiedAdjective() {
     return `${adjectiveOrAdverbModifier()} ${adjective()}`;
 }
 
-function descriptor() {
+function modifiedAdverb() {
+    return `${adjectiveOrAdverbModifier()} ${adverb()}`;
+}
+
+function thingDescriptor() {
     return randomElement([
         adjective,
         modifiedAdjective,
     ])();
 }
 
+function verbDescriptor(): string | undefined {
+    return weightedRandomElement<() => string | undefined>([
+        [8, () => undefined],
+        [4, () => `${adverb()}`],
+        [2, () => `${modifiedAdverb()}`],
+        [2, () => {
+            const descriptor = verbDescriptor();
+            return descriptor ? `${adverb()} ${descriptor}` : `${adverb()}`;
+        }],
+        [1, () => {
+            const descriptor = verbDescriptor();
+            return descriptor ? `${modifiedAdverb()} ${descriptor}` : `${adverb()}`;
+        }],
+    ])();
+}
+
 function description() {
     return randomElement([
-        () => `${articledThing()} is ${descriptor()}`,
-        () => `${articledThings()} are ${descriptor()}`,
+        () => `${articledThing()} is ${thingDescriptor()}`,
+        () => `${articledThings()} are ${thingDescriptor()}`,
     ])();
 }
 
 function intransitiveAction() {
     return randomElement([
-        () => `${articledThing()} ${intransitiveSingularVerbAnyTense()}`,
-        () => `${articledThings()} ${intransitivePluralVerbAnyTense()}`,
+        () => `${articledThing()} ${intransitiveSingularVerbAnyTense(verbDescriptor())}`,
+        () => `${articledThings()} ${intransitivePluralVerbAnyTense(verbDescriptor())}`,
     ])();
 }
 
 function transitiveAction() {
     return randomElement([
-        () => `${articledThing()} ${transitiveSingularVerbAnyTense()} ${randomElement([articledThings, articledThing])()}`,
-        () => `${articledThings()} ${transitivePluralVerbAnyTense()} ${randomElement([articledThings, articledThing])()}`,
+        () => `${articledThing()} ${transitiveSingularVerbAnyTense(verbDescriptor())} ${randomElement([articledThings, articledThing])()}`,
+        () => `${articledThings()} ${transitivePluralVerbAnyTense(verbDescriptor())} ${randomElement([articledThings, articledThing])()}`,
     ])();
 }
