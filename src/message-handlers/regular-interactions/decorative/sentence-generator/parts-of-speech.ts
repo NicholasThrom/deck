@@ -1,5 +1,6 @@
 import * as indefiniteUntyped from "indefinite";
 import { randomElement, weightedRandomElement } from "../../../../utils/random";
+import { adjective } from "./parts-of-speech/adjective";
 import { pluralNoun, singularNoun } from "./parts-of-speech/nouns";
 import {
     intransitivePluralVerbAnyTense,
@@ -8,6 +9,7 @@ import {
     transitiveSingularVerbAnyTense,
 } from "./parts-of-speech/verbs";
 import { capitalizeFirstLetter } from "./util";
+import { adjectiveOrAdverbModifier } from "./parts-of-speech/modifier";
 
 const indefinite = indefiniteUntyped as unknown as (string: string) => string;
 
@@ -17,41 +19,6 @@ export function randomSentence() {
         transitiveAction,
         intransitiveAction,
     ])()}.`);
-}
-
-function adjective() {
-    return randomElement([
-        "good",
-        "bad",
-        "smelly",
-        "tall",
-        "cool",
-        "purple",
-        "orange",
-        "green",
-        "yellow",
-        "red",
-        "sneaky",
-        "angry",
-        "helpful",
-        "dastardly",
-        "sad",
-        "dead",
-        "funny",
-        "relatable",
-    ]);
-}
-
-function adjectiveOrAdverbModifier() {
-    return randomElement([
-        "really",
-        "very",
-        "quite",
-        "pretty",
-        "extremely",
-        "slightly",
-        "too",
-    ]);
 }
 
 function described(thing: () => string): string {
