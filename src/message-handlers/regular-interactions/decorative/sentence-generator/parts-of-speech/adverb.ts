@@ -1,4 +1,5 @@
-import { randomElement } from "../../../../../utils/random";
+import { randomElement, weightedRandomElement } from "../../../../../utils/random";
+import { adjectiveOrAdverbModifier } from "./modifier";
 
 const adverbs = [
     "abnormally",
@@ -303,4 +304,24 @@ const adverbs = [
 
 export function adverb() {
     return randomElement(adverbs);
+}
+
+function modifiedAdverb() {
+    return `${adjectiveOrAdverbModifier()} ${adverb()}`;
+}
+
+export function verbDescriptor(): string | undefined {
+    return weightedRandomElement<() => string | undefined>([
+        [8, () => undefined],
+        [4, () => `${adverb()}`],
+        [2, () => `${modifiedAdverb()}`],
+        [2, () => {
+            const descriptor = verbDescriptor();
+            return descriptor ? `${adverb()} ${descriptor}` : `${adverb()}`;
+        }],
+        [1, () => {
+            const descriptor = verbDescriptor();
+            return descriptor ? `${modifiedAdverb()} ${descriptor}` : `${adverb()}`;
+        }],
+    ])();
 }
