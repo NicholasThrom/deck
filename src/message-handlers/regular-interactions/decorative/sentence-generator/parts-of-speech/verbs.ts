@@ -29,7 +29,7 @@ const intransitiveVerbs: Verb[] = [
     { singular: "beeps", regular: "beep", past: "beeped", gerund: "beeping" },
     { singular: "dies", regular: "die", past: "died", gerund: "dying" },
     { singular: "falls", regular: "fall", past: "fell", gerund: "falling" },
-    { singular: "knows", regular: "know", past: "knew", gerund: "knowing" },
+    { singular: "knows", regular: "know", past: "knew", participle: "known", gerund: "knowing" },
     { singular: "lies", regular: "lie", past: "lied", gerund: "lying" },
     { singular: "runs", regular: "run", past: "ran", gerund: "running" },
     { singular: "sings", regular: "sing", past: "sang", participle: "sung", gerund: "singing" },
