@@ -1,27 +1,18 @@
-import { randomElement } from "../../../../utils/random";
-import { thingDescriptor } from "./parts-of-speech/adjective";
-import { verbDescriptor } from "./parts-of-speech/adverb";
-import { articledThing, articledThings } from "./parts-of-speech/articles";
+import { randomElement, weightedRandomElement } from "../../../../../utils/random";
+import { adjective, modifiedAdjective } from "./adjective";
+import { verbDescriptor } from "./adverb";
+import { articledThing, articledThings } from "./articles";
 import {
     intransitivePluralVerbAnyTense,
     intransitiveSingularVerbAnyTense,
     transitivePluralVerbAnyTense,
     transitiveSingularVerbAnyTense,
-} from "./parts-of-speech/verbs";
-import { capitalizeFirstLetter } from "./util";
-
-export function randomSentence() {
-    return capitalizeFirstLetter(`${randomElement([
-        description,
-        transitiveAction,
-        intransitiveAction,
-    ])()}.`);
-}
+} from "./verbs";
 
 function description() {
     return randomElement([
-        () => `${articledThing()} is ${thingDescriptor()}`,
-        () => `${articledThings()} are ${thingDescriptor()}`,
+        () => `${articledThing()} is ${adjective()}`,
+        () => `${articledThings()} are ${modifiedAdjective()}`,
     ])();
 }
 
@@ -36,5 +27,13 @@ function transitiveAction() {
     return randomElement([
         () => `${articledThing()} ${transitiveSingularVerbAnyTense(verbDescriptor())} ${randomElement([articledThings, articledThing])()}`,
         () => `${articledThings()} ${transitivePluralVerbAnyTense(verbDescriptor())} ${randomElement([articledThings, articledThing])()}`,
+    ])();
+}
+
+export function independentClause() {
+    return weightedRandomElement([
+        [4, description],
+        [4, transitiveAction],
+        [4, intransitiveAction],
     ])();
 }

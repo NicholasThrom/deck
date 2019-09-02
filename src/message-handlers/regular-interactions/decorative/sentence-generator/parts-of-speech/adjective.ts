@@ -26,16 +26,16 @@ export function adjective() {
     return randomElement(adjectives);
 }
 
-function modifiedAdjective() {
+export function modifiedAdjective() {
     return `${adjectiveOrAdverbModifier()} ${adjective()}`;
 }
 
 export function thingDescriptor(): string | undefined {
     return weightedRandomElement<() => string | undefined>([
-        [8, () => undefined],
-        [4, () => `${adjective()}`],
+        [16, () => undefined],
+        [8, () => `${adjective()}`],
         [2, () => `${modifiedAdjective()}`],
-        [2, () => {
+        [4, () => {
             const descriptor = thingDescriptor();
             return descriptor ? `${adjective()} ${descriptor}` : `${adjective()}`;
         }],

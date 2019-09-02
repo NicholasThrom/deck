@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import { randomSentence } from "./parts-of-speech";
+import { randomSentence } from "./sentence-generator";
 
 export function sentence(message: Message) {
     const { content } = message;

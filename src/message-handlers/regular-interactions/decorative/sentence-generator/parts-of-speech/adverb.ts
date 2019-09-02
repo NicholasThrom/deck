@@ -312,10 +312,10 @@ function modifiedAdverb() {
 
 export function verbDescriptor(): string | undefined {
     return weightedRandomElement<() => string | undefined>([
-        [8, () => undefined],
-        [4, () => `${adverb()}`],
+        [16, () => undefined],
+        [8, () => `${adverb()}`],
         [2, () => `${modifiedAdverb()}`],
-        [2, () => {
+        [4, () => {
             const descriptor = verbDescriptor();
             return descriptor ? `${adverb()} ${descriptor}` : `${adverb()}`;
         }],
