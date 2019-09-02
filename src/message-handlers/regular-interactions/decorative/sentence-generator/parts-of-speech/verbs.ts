@@ -134,7 +134,7 @@ function pastPerfect(verbCollection: VerbCollection, plurality: Plurality, modif
 }
 
 function futureContinuous(verbCollection: VerbCollection, plurality: Plurality, modifier: string | undefined) {
-    return `will be${spaceModifier(modifier)}${randomElement(verbCollection.participle)}`;
+    return `will be${spaceModifier(modifier)}${randomElement(verbCollection.gerund)}`;
 }
 
 function presentPerfectContinuous(verbCollection: VerbCollection, plurality: Plurality, modifier: string | undefined) {
