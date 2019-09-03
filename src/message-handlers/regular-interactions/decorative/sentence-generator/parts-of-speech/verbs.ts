@@ -37,6 +37,7 @@ const transitiveVerbs: Verb[] = [
     { singular: "imagines", regular: "imagine", past: "imagined", gerund: "imagining" },
     { singular: "kills", regular: "kill", past: "killed", gerund: "killing" },
     { singular: "licks", regular: "lick", past: "licked", gerund: "licking" },
+    { singular: "looks at", regular: "look at", past: "looked at", gerund: "looking at" },
     { singular: "likes", regular: "like", past: "liked", gerund: "liking" },
     { singular: "loves", regular: "love", past: "loved", gerund: "loving" },
     { singular: "neglects", regular: "neglect", past: "neglected", gerund: "neglecting" },
