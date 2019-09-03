@@ -311,7 +311,7 @@ function modifiedAdverb() {
 
 export function verbDescriptor(): string | undefined {
     return weightedRandomElement<() => string | undefined>([
-        [16, () => undefined],
+        [32, () => undefined],
         [8, () => `${adverb()}`],
         [2, () => `${modifiedAdverb()}`],
         [4, () => {

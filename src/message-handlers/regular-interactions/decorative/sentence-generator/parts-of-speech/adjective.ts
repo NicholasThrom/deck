@@ -32,7 +32,7 @@ export function modifiedAdjective() {
 
 export function thingDescriptor(): string | undefined {
     return weightedRandomElement<() => string | undefined>([
-        [16, () => undefined],
+        [32, () => undefined],
         [8, () => `${adjective()}`],
         [2, () => `${modifiedAdjective()}`],
         [4, () => {
