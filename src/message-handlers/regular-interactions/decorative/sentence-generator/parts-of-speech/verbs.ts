@@ -67,6 +67,8 @@ const intransitiveVerbs: Verb[] = [
     { singular: "leaps", regular: "leap", past: "leapt", gerund: "leaping" },
     { singular: "left", regular: "leave", past: "left", gerund: "leaving" },
     { singular: "lies", regular: "lie", past: "lied", gerund: "lying" },
+    { singular: "moos", regular: "moo", past: "mooed", gerund: "mooing" },
+    { singular: "meows", regular: "meow", past: "meowed", gerund: "meowing" },
     { singular: "reacts", regular: "react", past: "reacted", gerund: "reacting" },
     { singular: "runs", regular: "run", past: "ran", gerund: "running" },
     { singular: "sings", regular: "sing", past: "sang", participle: "sung", gerund: "singing" },
