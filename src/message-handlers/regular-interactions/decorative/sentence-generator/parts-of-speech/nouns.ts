@@ -9,6 +9,7 @@ const nouns = [
     { singular: "book", plural: "books" },
     { singular: "box", plural: "boxes" },
     { singular: "boy", plural: "boys" },
+    { singular: "breakfast", plural: "breakfasts" },
     { singular: "car", plural: "cars" },
     { singular: "cat", plural: "cats" },
     { singular: "chair", plural: "chairs" },
@@ -45,6 +46,7 @@ const nouns = [
     { singular: "officer", plural: "officers" },
     { singular: "ostrich", plural: "ostriches" },
     { singular: "paint", plural: "paints" },
+    { singular: "pancake", plural: "pancakes" },
     { singular: "pepperoni", plural: "pepperonis" },
     { singular: "phone", plural: "phones" },
     { singular: "piece of paper", plural: "pieces of paper" },
@@ -61,6 +63,7 @@ const nouns = [
     { singular: "toaster", plural: "toasters" },
     { singular: "tower", plural: "towers" },
     { singular: "tree", plural: "trees" },
+    { singular: "waffle", plural: "waffles" },
     { singular: "wheel", plural: "wheels" },
     { singular: "word", plural: "words" },
 ];
