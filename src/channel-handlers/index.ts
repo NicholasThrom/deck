@@ -13,6 +13,7 @@ export async function handleChannelChange(client: Client, oldState: VoiceState, 
         personJingle("270690726759628802", "phantom"),
         personJingle("400455097433456640", "sarah"),
         personJingle("397471150378319872", "emma"),
+        personJingle("206270542242643968", "riley"),
 
         // Server jingles
         spaghettiosJingle,
