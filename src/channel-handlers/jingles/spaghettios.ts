@@ -1,4 +1,5 @@
 import { Client, VoiceState } from "discord.js";
+import { delay } from "../../utils/async";
 import { playAudioInChannel } from "../../utils/play-audio";
 
 export async function spaghettiosJingle(client: Client, oldState: VoiceState, newState: VoiceState) {
@@ -9,6 +10,9 @@ export async function spaghettiosJingle(client: Client, oldState: VoiceState, ne
     const channel = newState.channel;
     if (!channel) { return false; }
     if (!oldState.channel || channel.equals(oldState.channel)) { return false; }
+
+    await delay(1000);
+
     playAudioInChannel(channel, "jingle/cs.mp3");
     return true;
 }
