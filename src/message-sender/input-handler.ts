@@ -127,7 +127,7 @@ async function playSound(client: Client, channel: VoiceChannel) {
     const connection = await channel.join();
 
     while (true) {
-        const answer = await stdin.question("\n`say audio` to say something\n");
+        const answer = await stdin.question("\n`speak audio` to say something\n");
 
         const restartMatch = answer.match(/^restart/);
 
@@ -138,7 +138,7 @@ async function playSound(client: Client, channel: VoiceChannel) {
             return;
         }
 
-        const match = answer.match(/^say (.*)/);
+        const match = answer.match(/^speak (.*)/);
 
         if (!match) {
             console.log("Invalid command");
