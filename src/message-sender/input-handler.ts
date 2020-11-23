@@ -1,5 +1,6 @@
 import { Client, Guild, GuildChannel, TextChannel, VoiceChannel } from "discord.js";
 import { readline } from "mz";
+import * as path from "path";
 
 const stdin = readline.createInterface({
     input: process.stdin,
@@ -11,7 +12,7 @@ export async function setUpInputHandler(client: Client) {
 }
 
 async function listGuilds(client: Client) {
-    const guilds = Array.from(client.guilds.values());
+    const guilds = Array.from(client.guilds.cache.values());
     console.log();
     console.log("`restart` at any time to restart");
     console.log();
@@ -54,7 +55,7 @@ async function joinGuild(client: Client, guilds: Guild[]) {
 }
 
 async function listChannels(client: Client, guild: Guild) {
-    const channels = Array.from(guild.channels.values());
+    const channels = Array.from(guild.channels.cache.values());
     console.log();
     console.log("Channels available:");
     console.log(channels.map((channel, index) => `${index + 1}: ${channel.name}`).join("\n"));
@@ -136,5 +137,15 @@ async function playSound(client: Client, channel: VoiceChannel) {
             await listGuilds(client);
             return;
         }
+
+        const match = answer.match(/^say (.*)/);
+
+        if (!match) {
+            console.log("Invalid command");
+            continue;
+        }
+
+        const audio = match[1];
+        connection.play(path.join(__dirname, "..", "..", "..", "audio", audio));
     }
 }
