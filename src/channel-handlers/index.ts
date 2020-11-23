@@ -10,7 +10,7 @@ export async function handleChannelChange(client: Client, oldState: VoiceState, 
 
     await sequence([
         // Individual jingles
-        personJingle("218737910508158977", "phantom"),
+        personJingle("270690726759628802", "phantom"),
 
         // Server jingles
         spaghettiosJingle,
