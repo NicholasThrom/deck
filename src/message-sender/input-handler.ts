@@ -1,4 +1,4 @@
-import { Client, Guild, TextChannel } from "discord.js";
+import { Client, Guild, GuildChannel, TextChannel, VoiceChannel } from "discord.js";
 import { readline } from "mz";
 
 const stdin = readline.createInterface({
@@ -54,10 +54,7 @@ async function joinGuild(client: Client, guilds: Guild[]) {
 }
 
 async function listChannels(client: Client, guild: Guild) {
-    const channels = Array.from(
-        guild.channels.values())
-            .filter((channel): channel is TextChannel => channel.type === "text",
-    );
+    const channels = Array.from(guild.channels.values());
     console.log();
     console.log("Channels available:");
     console.log(channels.map((channel, index) => `${index + 1}: ${channel.name}`).join("\n"));
@@ -65,7 +62,7 @@ async function listChannels(client: Client, guild: Guild) {
     joinChannel(client, channels);
 }
 
-async function joinChannel(client: Client, channels: TextChannel[]) {
+async function joinChannel(client: Client, channels: GuildChannel[]) {
     const answer = await stdin.question("\n`join [number]` to join the channel\n");
 
     const restartMatch = answer.match(/^restart/);
@@ -94,7 +91,11 @@ async function joinChannel(client: Client, channels: TextChannel[]) {
     const channel = channels[channelNumber];
     console.log(`Joined ${channel.name}`);
 
-    await speak(client, channel);
+    if (channel.type === "text") {
+        await speak(client, channel as TextChannel);
+    } else {
+        await playSound(client, channel as VoiceChannel);
+    }
 }
 
 async function speak(client: Client, channel: TextChannel) {
@@ -119,4 +120,21 @@ async function speak(client: Client, channel: TextChannel) {
 
     channel.send(message);
     await speak(client, channel);
+}
+
+async function playSound(client: Client, channel: VoiceChannel) {
+    const connection = await channel.join();
+
+    while (true) {
+        const answer = await stdin.question("\n`say audio` to say something\n");
+
+        const restartMatch = answer.match(/^restart/);
+
+        if (restartMatch) {
+            connection.disconnect();
+
+            await listGuilds(client);
+            return;
+        }
+    }
 }
