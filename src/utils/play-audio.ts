@@ -8,7 +8,7 @@ export async function playAudio(connection: VoiceConnection, audio: string) {
 export async function playAudioInChannel(channel: VoiceChannel, audio: string) {
     const connection = await channel.join();
     const stream = await playAudio(connection, audio);
-    stream.on("end", () => {
+    stream.on("finish", () => {
         connection.disconnect();
     });
 }
