@@ -1,6 +1,6 @@
 import { Client, Guild, GuildChannel, TextChannel, VoiceChannel } from "discord.js";
 import { readline } from "mz";
-import * as path from "path";
+import { playAudio } from "../utils/play-audio";
 
 const stdin = readline.createInterface({
     input: process.stdin,
@@ -146,6 +146,6 @@ async function playSound(client: Client, channel: VoiceChannel) {
         }
 
         const audio = match[1];
-        connection.play(path.join(__dirname, "..", "..", "..", "audio", audio));
+        await playAudio(connection, audio);
     }
 }
