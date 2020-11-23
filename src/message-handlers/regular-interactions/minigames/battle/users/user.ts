@@ -110,7 +110,7 @@ export class User {
     }
 
     public nameInGuild(guild: Guild) {
-        return guild.member(this.id).displayName;
+        return guild.member(this.id)?.displayName;
     }
 
     public healthBar() {

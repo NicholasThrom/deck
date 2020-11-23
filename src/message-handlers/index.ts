@@ -11,7 +11,9 @@ import { quietGame } from "./regular-interactions/minigames/quiet-game";
 import { questionTester } from "./regular-interactions/tests/question-tester";
 
 export async function handleMessage(client: Client, message: Message) {
-    if (message.author.equals(client.user)) { return; }
+    const user = client.user;
+    if (!user) { return false; }
+    if (message.author.equals(user)) { return; }
 
     await sequence([
 

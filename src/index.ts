@@ -7,7 +7,7 @@ import { setUpInputHandler } from "./message-sender/input-handler";
 export async function setUp() {
     const client = new Client();
 
-    client.on("ready", () => { console.log(`Logged in as ${client.user.tag}!`); });
+    client.on("ready", () => { console.log(`Logged in as ${client.user?.tag}!`); });
     client.on("message", async (message) => { await handleMessage(client, message); });
     await logIn(client);
 

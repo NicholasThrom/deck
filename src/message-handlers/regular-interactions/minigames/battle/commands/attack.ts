@@ -12,7 +12,10 @@ export function attack(message: Message) {
 
     enemy.damage(enemyDamage);
 
-    message.channel.send(enemyHitMessage(message.guild, enemy.name));
+    const guild = message.guild;
+    if (!guild) { return false; }
+
+    message.channel.send(enemyHitMessage(guild, enemy.name));
     message.channel.send(enemy.status());
     if (enemy.isDead()) {
         message.channel.send(`**${enemy.name}** has been slain!`);
@@ -33,11 +36,11 @@ export function attack(message: Message) {
 
     const { damage: userDamage, message: damageMessage } = enemy.getDamage(user.defence);
 
-    message.channel.send(damageMessage(message.guild.member(user.id).displayName));
+    message.channel.send(damageMessage(guild.member(user.id)?.displayName ?? ""));
     user.damage(userDamage);
-    message.channel.send(user.status(message.guild));
+    message.channel.send(user.status(guild));
     if (user.isDead()) {
-        message.channel.send(`**${message.guild.member(user.id).displayName}** has been slain!`);
+        message.channel.send(`**${guild.member(user.id)?.displayName}** has been slain!`);
         user.revive();
         enemies.delete(message.channel.id);
         if (enemy.shouldWinMessage()) {

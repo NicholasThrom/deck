@@ -6,7 +6,9 @@ export function stats(message: Message) {
 
     const user = users.get(message.author.id);
 
-    message.channel.send(user.status(message.guild));
+    const guild = message.guild;
+    if (!guild) { return false; }
+    message.channel.send(user.status(guild));
 
     return true;
 }
