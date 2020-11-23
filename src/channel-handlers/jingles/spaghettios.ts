@@ -9,7 +9,7 @@ export async function spaghettiosJingle(client: Client, oldState: VoiceState, ne
 
     const channel = newState.channel;
     if (!channel) { return false; }
-    if (!oldState.channel || channel.equals(oldState.channel)) { return false; }
+    if (oldState.channel) { return false; }
 
     await delay(1000);
 
