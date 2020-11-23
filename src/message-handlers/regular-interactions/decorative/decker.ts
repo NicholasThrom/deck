@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import { randomElement } from "../../../utils/random";
+import { chance, randomElement } from "../../../utils/random";
 
 const responses = [
     "dekt!",
@@ -13,6 +13,8 @@ export function decker(message: Message) {
     const { content } = message;
 
     if (!content.match(/deck/i)) { return; }
-    message.reply(randomElement(responses));
+    if (chance(0.3)) {
+        message.channel.send(randomElement(responses));
+    }
     return true;
 }
