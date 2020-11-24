@@ -4,7 +4,7 @@ import { randomSentence } from "./sentence-generator";
 export function sentence(message: Message) {
     const { content } = message;
 
-    const match = content.match(/sentence|speak|advice|help|say|said(?: (\d+))?/);
+    const match = content.match(/sentence|speak|advice|help|say|said|what(?: (\d+))?/);
 
     if (!match) { return; }
 
