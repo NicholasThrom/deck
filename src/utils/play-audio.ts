@@ -6,9 +6,13 @@ export async function playAudio(connection: VoiceConnection, audio: string) {
 }
 
 export async function playAudioInChannel(channel: VoiceChannel, audio: string) {
-    const connection = await channel.join();
-    const stream = await playAudio(connection, audio);
-    stream.on("finish", () => {
-        connection.disconnect();
-    });
+    try {
+        const connection = await channel.join();
+        const stream = await playAudio(connection, audio);
+        stream.on("finish", () => {
+            connection.disconnect();
+        });
+    } catch (err) {
+        console.log(`Tried to join channel ${channel.name} in ${channel.guild.name} but did not have permission.`);
+    }
 }
