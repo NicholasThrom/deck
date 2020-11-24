@@ -3,12 +3,12 @@ import { delay } from "../../../utils/async";
 import { chance, randomElement, randomIn } from "../../../utils/random";
 import { RateLimiter } from "../../../utils/rate-limiter";
 
-const rateLimiter = new RateLimiter(1, 10 * 1000);
+const rateLimiter = new RateLimiter(1, 60 * 1000);
 
 export function deckDealer(message: Message) {
     if (rateLimiter.hit("o")) { return; }
 
-    if (!chance(0.1)) { return; }
+    if (!chance(0.01)) { return; }
 
     delay(randomIn(10000, 10000000)).then(async () => {
         const responses = [
