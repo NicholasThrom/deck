@@ -9,7 +9,7 @@ export function sentence(message: Message) {
 
     if (!match) { return; }
 
-    if (match[1] !== "sentence" || chance(0.8)) { return; }
+    if (match[1] !== "sentence" && chance(0.9)) { return; }
 
     let count = parseInt(match[2], 10) || 1;
     if (count > 20) { count = 20; }
