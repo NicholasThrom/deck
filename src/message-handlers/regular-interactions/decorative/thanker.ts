@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import { randomElement } from "../../../utils/random";
+import { chance, randomElement } from "../../../utils/random";
 
 const responses = [
     "no prob!",
@@ -16,6 +16,8 @@ export function thanker(message: Message) {
     const { content } = message;
 
     if (!content.match(/thank(?:s?| +you)/)) { return; }
+
+    if (chance(0.8)) { return; }
 
     message.reply(randomElement(responses));
     return true;

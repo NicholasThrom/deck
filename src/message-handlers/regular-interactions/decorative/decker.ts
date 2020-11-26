@@ -14,9 +14,9 @@ export function decker(message: Message) {
     const { content } = message;
 
     if (!content.match(/deck/i)) { return; }
-    if (chance(0.3)) {
+    if (chance(0.2)) {
         message.channel.send(randomElement(responses));
-    } else if (chance(0.1)) {
+    } else if (chance(0.05)) {
         message.channel.send(randomSentence());
     }
     return true;
