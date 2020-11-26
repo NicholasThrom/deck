@@ -1,14 +1,17 @@
 import { Message } from "discord.js";
+import { chance } from "../../../../utils/random";
 import { randomSentence } from "./sentence-generator";
 
 export function sentence(message: Message) {
     const { content } = message;
 
-    const match = content.match(/sentence|speak|advice|help|say|said|what(?: (\d+))?/);
+    const match = content.match(/(sentence|speak|advice|help|say|said|what)(?: (\d+))?/);
 
     if (!match) { return; }
 
-    let count = parseInt(match[1], 10) || 1;
+    if (match[1] !== "sentence" || chance(0.8)) { return; }
+
+    let count = parseInt(match[2], 10) || 1;
     if (count > 20) { count = 20; }
 
     const sentences = [];
