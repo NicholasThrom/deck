@@ -1,7 +1,7 @@
 import { Message, VoiceChannel } from "discord.js";
 import { playAudioInChannel } from "../../../utils/play-audio";
 
-export function decker(message: Message) {
+export function wellerman(message: Message) {
     const { content } = message;
 
     if (!content.match(/wellerman/i)) { return; }

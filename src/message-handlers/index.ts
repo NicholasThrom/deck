@@ -6,6 +6,7 @@ import { decker } from "./regular-interactions/decorative/decker";
 import { play } from "./regular-interactions/decorative/play";
 import { sentence } from "./regular-interactions/decorative/sentence-generator/sentence";
 import { thanker } from "./regular-interactions/decorative/thanker";
+import { wellerman } from "./regular-interactions/decorative/wellerman";
 import { battle } from "./regular-interactions/minigames/battle";
 import { quietGame } from "./regular-interactions/minigames/quiet-game";
 import { questionTester } from "./regular-interactions/tests/question-tester";
@@ -27,6 +28,7 @@ export async function handleMessage(client: Client, message: Message) {
         play,
         thanker,
         decker,
+        wellerman,
         sentence,
         battle,
         quietGame,
