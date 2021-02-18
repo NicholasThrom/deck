@@ -4,6 +4,7 @@ import { TypedJSON } from "typesafe-json";
 import { handleChannelChange } from "./channel-handlers";
 import { handleMessage } from "./message-handlers";
 import { setUpInputHandler } from "./message-sender/input-handler";
+import { scheduleWellerman } from "./scheduler/wellerman";
 
 export async function setUp() {
     const client = new Client();
@@ -17,6 +18,7 @@ export async function setUp() {
     await logIn(client);
 
     setUpInputHandler(client);
+    scheduleWellerman(client);
 }
 
 async function logIn(client: Client) {
