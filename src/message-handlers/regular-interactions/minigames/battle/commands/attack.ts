@@ -3,7 +3,7 @@ import { randomIn } from "../../../../../utils/random";
 import { enemies, users } from "../state";
 
 export function attack(message: Message) {
-    if (!message.content.match(/attack|kick/i)) { return; }
+    if (!message.content.match(/\.attack|\.kick/i)) { return; }
 
     const user = users.get(message.author.id);
     const enemy = enemies.get(message.channel.id);
